@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+<link rel="icon" href="Untitled.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--bg:#0f172a;--card:#0b1220;--text:#e5e7eb;--muted:#94a3b8;--btn:#2563eb;--btnHover:#1e40af;--border:#1f2937}
+.light{--bg:#f1f5f9;--card:#ffffff;--text:#0f172a;--muted:#334155;--btn:#2563eb;--btnHover:#1e40af;--border:#e5e7eb}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+.wrap{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:24px}
+.container{width:100%;max-width:980px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{font-weight:700}
+.theme-toggle{cursor:pointer;font-size:14px;color:var(--muted)}
+.cards{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:900px){.cards{grid-template-columns:1fr 1fr}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 6px 30px rgba(0,0,0,.20)}
+.card .hd{padding:16px 18px;border-bottom:1px solid var(--border);font-weight:600}
+.card .bd{padding:16px 18px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field{margin-top:10px}
+.label{font-size:12px;color:var(--muted);margin-bottom:6px}
+input,textarea,select{width:100%;padding:12px;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--text)}
+textarea{min-height:120px}
+.actions{margin-top:12px;display:flex;gap:10px}
+.btn{padding:12px 14px;border:none;border-radius:10px;background:var(--btn);color:#fff;cursor:pointer}
+.btn:hover{background:var(--btnHover)}
+.error{margin-top:10px;color:#ef4444;font-size:13px}
+.note{margin-top:10px;font-size:12px;color:var(--muted)}
+.list{margin-top:10px}
+.item{padding:12px;border-bottom:1px solid var(--border)}
+.item h4{margin:0 0 6px}
+img.preview{max-width:100%;border-radius:10px;margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+img.thumb{width:100%;height:110px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}
+.avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:1px solid var(--border)}
+/* Loader */
+.loader{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;z-index:9999}
+.loader .box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 28px;display:flex;align-items:center;gap:14px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.spinner{width:34px;height:34px;border-radius:50%;border:3px solid transparent;border-top-color:var(--btn);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div id="loader" class="loader"><div class="box"><div class="spinner"></div><div>Loading Admin...</div></div></div>
+<div class="wrap">
+  <div class="container">
+    <header>
+      <div class="brand">RLS Admin Dashboard</div>
+      <div class="theme-toggle" onclick="toggleTheme()">Theme</div>
+    </header>
+
+    <div class="cards">
+      <div class="card">
+        <div class="hd">Add Admin</div>
+        <div class="bd">
+          <div class="row">
+            <div class="field"><div class="label">Admin Email</div><input id="aemail" placeholder="admin@example.com"></div>
+            <div class="field"><div class="label">Password</div><input id="apass" type="password" placeholder="Set password"></div>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="addAdmin()">Add Admin</button>
+            <button class="btn" onclick="listAdmins()">Refresh List</button>
+          </div>
+          <div id="adminError" class="error" style="display:none"></div>
+          <div class="note">Creates an admin Auth account and role record.</div>
+          <div id="admins" class="list"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="hd">Tuition & Fees</div>
+        <div class="bd">
+          <div class="row">
+            <div class="field"><div class="label">Ordinary Level (Boarders)</div><input id="tOrdBorder" placeholder="430,000 Rwf"></div>
+            <div class="field"><div class="label">Ordinary Level (Day Scholars)</div><input id="tOrdDay" placeholder="220,000 Rwf"></div>
+          </div>
+          <div class="row">
+            <div class="field"><div class="label">Advanced Level (Boarders)</div><input id="tAdvBorder" placeholder="430,000 Rwf"></div>
+            <div class="field"><div class="label">Advanced Level (Day Scholars)</div><input id="tAdvDay" placeholder="220,000 Rwf"></div>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="saveTuitionFees()">Save Fees</button>
+            <button class="btn" onclick="loadTuitionFees()">Refresh Fees</button>
+          </div>
+          <div id="tuitionError" class="error" style="display:none"></div>
+          <div class="note">Update the school tuition and fee amounts shown on the public site.</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="hd">Add Student</div>
+        <div class="bd">
+          <div class="field"><div class="label">Student Name</div><input id="sname" placeholder="Full name"></div>
+          <div class="row">
+            <div class="field"><div class="label">Email</div><input id="semail" placeholder="student@example.com"></div>
+            <div class="field"><div class="label">Password</div><input id="spass" type="password" placeholder="Set password"></div>
+          </div>
+          <div class="row">
+            <div class="field"><div class="label">Birth Date</div><input id="sbirth" type="date"></div>
+            <div class="field"><div class="label">Class</div>
+              <select id="sclass">
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+                <option value="S3">S3</option>
+                <option value="S4 MPC">S4 MPC</option>
+                <option value="S4 PCB">S4 PCB</option>
+                <option value="S4 MCB">S4 MCB</option>
+                <option value="S4 PCM">S4 PCM</option>
+                <option value="S4 MPG">S4 MPG</option>
+                <option value="S4 HGL">S4 HGL</option>
+                <option value="S4 MEC">S4 MEC</option>
+                <option value="S4 MEG">S4 MEG</option>
+                <option value="S5 MPC">S5 MPC</option>
+                <option value="S5 PCB">S5 PCB</option>
+                <option value="S5 MCB">S5 MCB</option>
+                <option value="S5 PCM">S5 PCM</option>
+                <option value="S5 MPG">S5 MPG</option>
+                <option value="S5 HGL">S5 HGL</option>
+                <option value="S5 MEC">S5 MEC</option>
+                <option value="S5 MEG">S5 MEG</option>
+                <option value="S6 MPC">S6 MPC</option>
+                <option value="S6 PCB">S6 PCB</option>
+                <option value="S6 MCB">S6 MCB</option>
+                <option value="S6 PCM">S6 PCM</option>
+                <option value="S6 MPG">S6 MPG</option>
+                <option value="S6 HGL">S6 HGL</option>
+                <option value="S6 MEC">S6 MEC</option>
+                <option value="S6 MEG">S6 MEG</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field"><div class="label">Parents' Names</div><input id="sparentsname" placeholder="Names of parents"></div>
+            <div class="field"><div class="label">Parents' Phone</div><input id="sparentsphone" type="tel" placeholder="Phone number"></div>
+          </div>
+          <div class="row">
+            <div class="field"><div class="label">Profile Picture</div><input id="sphoto" type="file" accept="image/*"></div>
+            <div class="field"><div class="label">&nbsp;</div><div class="note">Required for student profile</div></div>
+          </div>
+          <div class="actions">
+            <button class="btn" onclick="addStudent()">Add Student</button>
+            <button class="btn" onclick="listStudents()">Refresh List</button>
+          </div>
+          <div id="studentError" class="error" style="display:none"></div>
+          <div class="note">Creates an Auth account and student profile safely.</div>
+          <div class="field"><div class="label">Search Students</div><input id="ssearch" placeholder="Type to search a student..."></div>
+          <div id="students" class="list"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="hd">
+
+      <div class="card">
+        <div class="hd">Post Upcoming</div>
+        <div class="bd">
+          <div class="row">
+            <div class="field"><div class="label">Title</div><input id="utitle" placeholder="Event title"></div>
+            <div class="field"><div class="label">Category</div><input id="ucategory" placeholder="Category"></div>
+          </div>
+          <div class="row">
+            <div class="field"><div class="label">Date</div><input id="udate" type="datetime-local"></div>
+            <div class="field"><div class="label">&nbsp;</div><div class="note">Provide future date/time</div></div>
+          </div>
+          <div class="field"><div class="label">Content</div><textarea id="ucontent" placeholder="Description"></textarea></div>
+          <div class="actions"><button class="btn" onclick="postUpcoming()">Publish Upcoming</button><button class="btn" onclick="loadUpcoming()">Refresh Upcoming</button></div>
+          <div id="upcomingError" class="error" style="display:none"></div>
+          <div id="upcomingList" class="list"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="hd">Upload Gallery Images (IMGBB)</div>
+        <div class="bd">
+          <div class="row">
+            <div class="field"><div class="label">Images</div><input id="gfiles" type="file" accept="image/*" multiple></div>
+            <div class="field"><div class="label">Category</div><input id="gcategory" placeholder="e.g., Events"></div>
+          </div>
+          <div class="field"><div class="label">Head (title)</div><input id="ghead" placeholder="Short headline"></div></div>
+          <div class="field"><div class="label">Content</div><textarea id="gcontent" placeholder="Describe the photo(s)"></textarea></div>
+          <div class="actions"><button class="btn" onclick="uploadGallery()">Upload to IMGBB</button><button class="btn" onclick="loadGallery()">Refresh Gallery</button></div>
+          <div id="galleryError" class="error" style="display:none"></div>
+          <div id="galleryUploadPreview" class="list"></div>
+          <div class="hd" style="margin-top:12px;border-top:1px solid var(--border);padding-top:12px">Gallery</div>
+          <div id="galleryList" class="grid"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="hd">Upload Past Papers</div>
+        <div class="bd">
+          <div class="note" style="margin-bottom:16px;padding:12px;background:var(--muted);border-radius:8px">Choose one method: Auto-upload (Method 1) OR paste link (Method 2)</div>
+          
+          <div style="border:1px solid var(--border);padding:12px;border-radius:8px;margin-bottom:16px">
+            <b>Method 1: Auto-Upload (Requires API Token)</b>
+          </div>
+          
+          <div class="field"><div class="label">Dropbox Access Token</div><input id="pptoken" type="password" placeholder="sl.u.AGX..."><div class="note">Get from https://www.dropbox.com/developers/apps - expires periodically</div></div>
+          
+          <div class="row">
+            <div class="field"><div class="label">Level</div>
+              <select id="pplevel">
+                <option value="">-- Select Level --</option>
+                <option value="S3">S3</option>
+                <option value="S6">S6</option>
+              </select>
+            </div>
+            <div class="field"><div class="label">Subject</div>
+              <select id="ppsubject">
+                <option value="">-- Select Subject --</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Physics">Physics</option>
+                <option value="Biology">Biology</option>
+                <option value="Economics">Economics</option>
+                <option value="French">French</option>
+                <option value="Kinyarwanda">Kinyarwanda</option>
+                <option value="English">English</option>
+                <option value="History">History</option>
+                <option value="Geography">Geography</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Literature">Literature</option>
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field"><div class="label">Year</div><input id="ppyear" type="number" min="2005" placeholder="e.g., 2024"></div>
+            <div class="field"><div class="label">PDF File</div><input id="ppfile" type="file" accept="application/pdf"></div>
+          </div>
+          <div class="field"><div class="label">Description (Optional)</div><textarea id="ppdesc" placeholder="Add any notes or details about this paper..."></textarea></div>
+          <div class="actions">
+            <button class="btn" onclick="uploadPastPaper()">Method 1: Auto-Upload</button>
+          </div>
+          
+          <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px">
+            <div style="border:1px solid var(--border);padding:12px;border-radius:8px;margin-bottom:16px">
+              <b>Method 2: Paste Dropbox Link (No API Token Needed)</b>
+            </div>
+            
+            <div class="row">
+              <div class="field"><div class="label">Level</div>
+                <select id="ppmanual_level">
+                  <option value="">-- Select Level --</option>
+                  <option value="S3">S3</option>
+                  <option value="S6">S6</option>
+                </select>
+              </div>
+              <div class="field"><div class="label">Subject</div>
+                <select id="ppmanual_subject">
+                  <option value="">-- Select Subject --</option>
+                  <option value="Mathematics">Mathematics</option>
+                  <option value="Physics">Physics</option>
+                  <option value="Biology">Biology</option>
+                  <option value="Economics">Economics</option>
+                  <option value="French">French</option>
+                  <option value="Kinyarwanda">Kinyarwanda</option>
+                  <option value="English">English</option>
+                  <option value="History">History</option>
+                  <option value="Geography">Geography</option>
+                  <option value="Chemistry">Chemistry</option>
+                  <option value="Computer Science">Computer Science</option>
+                  <option value="Literature">Literature</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="field"><div class="label">Year</div><input id="ppmanual_year" type="number" min="2005" placeholder="e.g., 2024"></div>
+              <div class="field"><div class="label">Dropbox Link</div><input id="ppmanual_link" placeholder="https://www.dropbox.com/s/...?dl=1"></div>
+            </div>
+            <div class="field"><div class="label">Description (Optional)</div><textarea id="ppmanual_desc" placeholder="Add any notes or details about this paper..."></textarea></div>
+            <div class="actions">
+              <button class="btn" onclick="uploadPastPaperManual()">Method 2: Save Link</button>
+            </div>
+          </div>
+          
+          <div id="pastpaperError" class="error" style="display:none;margin-top:12px"></div>
+          <div class="actions" style="margin-top:16px"><button class="btn" onclick="loadPastPapers()">Refresh List</button></div>
+          <div id="pastpaperList" class="list"></div>
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top:16px"><button class="btn" onclick="logout()">Logout</button></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="firebase.js"></script>
+<script>
+// Protect this page: only Admins allowed
+auth.onAuthStateChanged(async u=>{
+  if(!u){ location = "login.html"; return; }
+  const snap = await db.ref("admins/"+u.uid).once("value");
+  if(!snap.exists() || snap.val().role !== "admin"){ await auth.signOut(); location = "login.html"; return; }
+  await initAdmin();
+});
+
+async function addStudent(){
+  hide("studentError");
+  const name = sname.value.trim();
+  const email = semail.value.trim();
+  const pass = spass.value;
+  const birth = sbirth.value.trim();
+  const sclassVal = sclass.value;
+  const parentsName = sparentsname.value.trim();
+  const parentsPhone = sparentsphone.value.trim();
+  const photoFile = document.getElementById("sphoto").files[0];
+  if(!name || !email || !pass || !birth || !sclassVal || !parentsName || !parentsPhone || !photoFile){ return show("studentError","Fill all fields, including profile picture."); }
+  try{
+    const user = await createUserWithoutSwitch(email, pass);
+    const base64 = await fileToBase64(photoFile);
+    const uploaded = await uploadToImgbb(base64, (user.uid+"_profile"));
+    await db.ref("students/"+user.uid).set({ name, email, role:"student", birthDate: birth, class: sclassVal, parentsName, parentsPhone, photoUrl: uploaded.url, photoDeleteUrl: uploaded.deleteUrl, photoImgbbId: uploaded.id, createdAt: Date.now() });
+    sname.value = ""; semail.value = ""; spass.value = ""; sbirth.value = ""; sparentsname.value = ""; sparentsphone.value = ""; sclass.value = "S1"; document.getElementById("sphoto").value = "";
+    await listStudents();
+  }catch(e){ show("studentError", e.message); }
+}
+
+async function addAdmin(){
+  hide("adminError");
+  const email = aemail.value.trim();
+  const pass = apass.value;
+  if(!email || !pass){ return show("adminError","Fill all fields."); }
+  try{
+    const user = await createUserWithoutSwitch(email, pass);
+    await db.ref("admins/"+user.uid).set({ role:"admin", email, createdAt: Date.now() });
+    aemail.value = ""; apass.value = "";
+    await listAdmins();
+  }catch(e){ show("adminError", e.message); }
+}
+
+async function notifyUsers(title, message) {
+  return;
+}
+
+async function postNews(){
+  hide("newsError");
+  const title = ntitle.value.trim();
+  const category = ncategory.value.trim() || "General";
+  const content = ncontent.value.trim();
+  const file = nimage.files && nimage.files[0];
+  if(!title || !content){ return show("newsError","Title and content are required."); }
+  try{
+    let imageUrl = "";
+    if(file){
+      const id = "n_"+Date.now();
+      const ref = storage.ref().child(`news/${id}/${file.name}`);
+      await ref.put(file);
+      imageUrl = await ref.getDownloadURL();
+    }
+    await db.ref("news").push({ title, category, content, imageUrl, date: new Date().toISOString() });
+    ntitle.value=""; ncategory.value=""; ncontent.value=""; nimage.value="";
+    await loadNews();
+  }catch(e){ show("newsError", e.message); }
+}
+
+async function loadUpcoming(){
+  const snap = await db.ref("upcomingnews").orderByChild("date").limitToLast(50).once("value");
+  const data = snap.val() || {};
+  const list = document.getElementById("upcomingList");
+  const items = Object.entries(data).sort((a,b)=>new Date(a[1].date)-new Date(b[1].date)).reverse().map(([id,u])=>{
+    return `<div class="item"><h4>${u.title}</h4><div class="note">${u.category} • ${new Date(u.date).toLocaleString()}</div><div>${u.content}</div><div class="actions" style="margin-top:8px"><button class="btn" onclick="deleteUpcoming('${id}')">Delete Upcoming</button></div></div>`;
+  }).join("");
+  list.innerHTML = items || `<div class="note">No upcoming items.</div>`;
+}
+
+async function loadTuitionFees(){
+  try{
+    const snap = await db.ref("tuitionFees").once("value");
+    const data = snap.val();
+    if(!data){ return; }
+    tOrdBorder.value = data.ordinaryBorder || "";
+    tOrdDay.value = data.ordinaryDay || "";
+    tAdvBorder.value = data.advancedBorder || "";
+    tAdvDay.value = data.advancedDay || "";
+  }catch(e){ console.warn("Tuition fees load failed:", e); }
+}
+
+async function saveTuitionFees(){
+  hide("tuitionError");
+  const ordinaryBorder = tOrdBorder.value.trim();
+  const ordinaryDay = tOrdDay.value.trim();
+  const advancedBorder = tAdvBorder.value.trim();
+  const advancedDay = tAdvDay.value.trim();
+  if(!ordinaryBorder || !ordinaryDay || !advancedBorder || !advancedDay){ return show("tuitionError","Fill all fee fields before saving."); }
+  try{
+    await db.ref("tuitionFees").set({
+      ordinaryBorder,
+      ordinaryDay,
+      advancedBorder,
+      advancedDay,
+      updatedAt: Date.now()
+    });
+    const tuitionMsg = document.getElementById("tuitionError");
+    tuitionMsg.textContent = "Tuition fees updated successfully.";
+    tuitionMsg.style.color = "#16a34a";
+    tuitionMsg.style.display = "block";
+  }catch(e){
+    const tuitionMsg = document.getElementById("tuitionError");
+    tuitionMsg.style.color = "#ef4444";
+    show("tuitionError", e.message);
+  }
+}
+
+function toggleTheme(){ const next = document.body.classList.toggle("light"); localStorage.setItem("rls_theme", next?"light":"dark"); }
+document.body.classList.toggle("light", localStorage.getItem("rls_theme") === "light");
+
+function show(id,msg){ const el=document.getElementById(id); el.textContent=msg; el.style.display="block"; }
+function hide(id){ const el=document.getElementById(id); el.style.display="none"; }
+
+// initial loads
+// moved to initAdmin()
+
+async function deleteNews(id){
+  await db.ref("news/"+id).remove();
+  await loadNews();
+}
+
+async function deleteUpcoming(id){
+  await db.ref("upcomingnews/"+id).remove();
+  await loadUpcoming();
+}
+
+async function deleteStudent(uid){
+  await db.ref("students/"+uid).remove();
+  await listStudents();
+}
+
+async function deleteAdmin(uid){
+  await db.ref("admins/"+uid).remove();
+  await listAdmins();
+}
+
+let studentsCache = {};
+function bindStudentSearch(){ const input = document.getElementById("ssearch"); if(input){ input.oninput = ()=>renderStudents(input.value.trim()); } }
+function renderStudents(q){
+  const list = document.getElementById("students");
+  const entries = Object.entries(studentsCache);
+  const t = (q||"").toLowerCase();
+  const filtered = t ? entries.filter(([id,s])=>{
+    return [s.name, s.email, s.class, s.parentsName, s.parentsPhone].filter(Boolean).some(v=>String(v).toLowerCase().includes(t));
+  }) : entries;
+  const html = filtered.map(([id,s])=>{
+    const img = s.photoUrl ? `<img class="avatar" src="${s.photoUrl}" alt="${s.name}">` : "";
+    return `<div class="item"><div style="display:flex;gap:10px;align-items:center">${img}<div style="flex:1"><h4>${s.name}</h4><div>${s.email}</div><div class="note">${s.class || ''} • ${s.birthDate || ''}</div><div class="note">Parents: ${s.parentsName || ''} • ${s.parentsPhone || ''}</div><div class="actions" style="margin-top:8px"><button class="btn" onclick="deleteStudent('${id}')">Delete Student</button></div></div></div></div>`;
+  }).join("");
+  list.innerHTML = html || `<div class="note">No students yet.</div>`;
+}
+
+async function initAdmin(){
+  showLoading();
+  await Promise.all([listAdmins(), listStudents(), loadNews(), loadUpcoming(), loadGallery(), loadPastPapers(), loadTuitionFees()]);
+  hideLoading();
+}
+
+function showLoading(){ const el=document.getElementById("loader"); if(el) el.style.display="flex"; }
+function hideLoading(){ const el=document.getElementById("loader"); if(el) el.style.display="none"; }
+
+// ===== IMGBB Gallery Upload Integration =====
+// Place your IMGBB API key here. Get one free from https://api.imgbb.com/
+const IMGBB_API_KEY = "832b7d2f1d9ac343e010307a747c5b87"; // Replace with your real key
+
+function showGalleryError(msg){ const el=document.getElementById("galleryError"); el.textContent=msg; el.style.display="block"; }
+function hideGalleryError(){ const el=document.getElementById("galleryError"); el.style.display="none"; }
+
+function fileToBase64(file){
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      const base64 = String(result).split(",")[1];
+      resolve(base64);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadToImgbb(base64, name){
+  const form = new FormData();
+  form.append("image", base64);
+  form.append("name", name || ("img_"+Date.now()));
+  const url = `https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`;
+  const res = await fetch(url, { method: "POST", body: form });
+  if(!res.ok){ throw new Error("IMGBB upload failed: "+res.status); }
+  const data = await res.json();
+  if(!data || !data.success){ throw new Error("IMGBB error: "+(data && data.error && data.error.message || "unknown")); }
+  return { url: data.data.url, deleteUrl: data.data.delete_url, id: data.data.id };
+}
+
+async function uploadGallery(){
+  hideGalleryError();
+  const files = document.getElementById("gfiles").files;
+  const category = document.getElementById("gcategory").value.trim() || "Gallery";
+  const head = document.getElementById("ghead").value.trim();
+  const content = document.getElementById("gcontent").value.trim();
+  if(!IMGBB_API_KEY || IMGBB_API_KEY === "PASTE_IMGBB_API_KEY_HERE"){ return showGalleryError("Add your IMGBB API key in code."); }
+  if(!files || files.length === 0){ return showGalleryError("Select at least one image."); }
+
+  const preview = document.getElementById("galleryUploadPreview");
+  preview.innerHTML = Array.from(files).map(f=>`<div class="item"><div>${f.name}</div><div class="note">${Math.round(f.size/1024)} KB</div></div>`).join("");
+
+  try{
+    for(const file of files){
+      const base64 = await fileToBase64(file);
+      const uploaded = await uploadToImgbb(base64, file.name);
+      await db.ref("rlsphotos").push({ image: uploaded.url, deleteUrl: uploaded.deleteUrl, imgbbId: uploaded.id, category, head, content, uploadedBy: auth.currentUser.uid, date: new Date().toISOString() });
+    }
+    document.getElementById("gfiles").value = ""; document.getElementById("gcategory").value = ""; document.getElementById("ghead").value = ""; document.getElementById("gcontent").value = "";
+    await loadGallery();
+  }catch(e){ showGalleryError(e.message); }
+}
+
+async function loadGallery(){
+  const snap = await db.ref("rlsphotos").orderByChild("date").limitToLast(100).once("value");
+  const data = snap.val() || {};
+  const list = document.getElementById("galleryList");
+  const items = Object.entries(data).sort((a,b)=>new Date(a[1].date)-new Date(b[1].date)).reverse().map(([id,g])=>{
+    const head = g.head || '';
+    const category = g.category || '';
+    const content = g.content ? `<div class="note">${g.content}</div>` : '';
+    return `<div><img class="thumb" src="${g.image}" alt="${head}"><div class="note"><b>${head}</b><br>${category}</div>${content}<div class="actions" style="margin-top:8px"><button class="btn" onclick="deletePhoto('${id}')">Delete</button></div></div>`;
+  }).join("");
+  list.innerHTML = items || `<div class="note">No gallery images yet.</div>`;
+}
+
+async function deletePhoto(id){
+  try{
+    const ref = db.ref("rlsphotos/"+id);
+    const snap = await ref.once("value");
+    const v = snap.val();
+    if(v && v.deleteUrl){
+      try{ await fetch(v.deleteUrl, { method: "GET" }); }catch(_){ /* ignore network errors */ }
+    }
+    await ref.remove();
+    await loadGallery();
+  }catch(e){ showGalleryError(e.message); }
+}
+
+// ===== PAST PAPERS MANAGEMENT =====
+async function uploadPastPaper(){
+  const errorEl = document.getElementById("pastpaperError");
+  errorEl.style.display = "none";
+  
+  // Check if token is provided
+  const token = document.getElementById("pptoken").value.trim();
+  if(!token){
+    errorEl.textContent = "❌ Dropbox access token is required. Paste your token from https://www.dropbox.com/developers/apps";
+    errorEl.style.display = "block";
+    return;
+  }
+  
+  const level = document.getElementById("pplevel").value.trim();
+  const subject = document.getElementById("ppsubject").value.trim();
+  const year = document.getElementById("ppyear").value.trim();
+  const file = document.getElementById("ppfile").files[0];
+  const desc = document.getElementById("ppdesc").value.trim();
+  
+  if(!level || !subject || !year || !file){
+    errorEl.textContent = "Level, Subject, Year, and PDF file are required.";
+    errorEl.style.display = "block";
+    return;
+  }
+  
+  if(!file.type || !file.type.includes("pdf")){
+    errorEl.textContent = "Please upload a PDF file only.";
+    errorEl.style.display = "block";
+    return;
+  }
+  
+  try{
+    const yearNum = parseInt(year);
+    if(isNaN(yearNum) || yearNum < 2005 || yearNum > new Date().getFullYear()){
+      errorEl.textContent = "Year must be between 2005 and " + new Date().getFullYear();
+      errorEl.style.display = "block";
+      return;
+    }
+    
+    errorEl.textContent = "⏳ Uploading to Dropbox...";
+    errorEl.style.display = "block";
+    errorEl.style.color = "#2563eb";
+    
+    // Read file as base64
+    const base64 = await fileToBase64(file);
+    const arrayBuffer = await file.arrayBuffer();
+    
+    // Upload to Dropbox
+    const fileName = `${yearNum}_${Date.now()}`.replace(/\s+/g, '_');
+    const dropboxPath = `/RLS_Past_Papers/${level}/${subject}/${fileName}.pdf`;
+    
+    const uploadResponse = await fetch("https://content.dropboxapi.com/2/files/upload", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Dropbox-API-Arg": JSON.stringify({
+          path: dropboxPath,
+          mode: "add",
+          autorename: true,
+          mute: false
+        }),
+        "Content-Type": "application/octet-stream"
+      },
+      body: arrayBuffer
+    });
+    
+    // Check response status first
+    if(!uploadResponse.ok){
+      const contentType = uploadResponse.headers.get("content-type");
+      let errorMsg = `Upload failed (${uploadResponse.status})`;
+      
+      if(contentType && contentType.includes("application/json")){
+        try{
+          const err = await uploadResponse.json();
+          errorMsg = err.error_summary || err.error || errorMsg;
+        }catch(_){}
+      } else {
+        const text = await uploadResponse.text();
+        errorMsg = text.substring(0, 200) || errorMsg;
+      }
+      
+      throw new Error(errorMsg);
+    }
+    
+    let uploadData;
+    try{
+      uploadData = await uploadResponse.json();
+    }catch(e){
+      throw new Error("Invalid response from Dropbox");
+    }
+    
+    errorEl.textContent = "⏳ Generating shareable link...";
+    
+    // Create shareable link
+    const linkResponse = await fetch("https://api.dropboxapi.com/2/sharing/create_shared_link_with_settings", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        path: uploadData.path_lower,
+        settings: {
+          requested_visibility: "public",
+          audience: "public",
+          access: "viewer"
+        }
+      })
+    });
+    
+    let shareLink = null;
+    
+    if(linkResponse.ok){
+      const linkData = await linkResponse.json();
+      shareLink = linkData.url.replace("?dl=0", "?dl=1");
+    } else {
+      // If link already exists, fetch it
+      const existingResponse = await fetch("https://api.dropboxapi.com/2/sharing/list_shared_links", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          path: uploadData.path_lower,
+          direct_only: true
+        })
+      });
+      
+      if(existingResponse.ok){
+        const existingData = await existingResponse.json();
+        if(existingData.links && existingData.links.length > 0){
+          shareLink = existingData.links[0].url.replace("?dl=0", "?dl=1");
+        }
+      }
+    }
+    
+    if(!shareLink){
+      throw new Error("Could not generate Dropbox link. Check token permissions: files.content.write, sharing.write");
+    }
+    
+    // Save to Firebase
+    await db.ref("pastpapers").push({
+      level,
+      subject,
+      year: yearNum,
+      link: shareLink,
+      description: desc,
+      uploadedBy: auth.currentUser.uid,
+      createdAt: new Date().toISOString()
+    });
+    
+    document.getElementById("pplevel").value = "";
+    document.getElementById("ppsubject").value = "";
+    document.getElementById("ppyear").value = "";
+    document.getElementById("ppfile").value = "";
+    document.getElementById("ppdesc").value = "";
+    
+    errorEl.textContent = "✅ Paper uploaded to Dropbox and saved!";
+    errorEl.style.color = "#16a34a";
+    
+    await loadPastPapers();
+  }catch(e){
+    console.error("Upload error:", e);
+    errorEl.textContent = "❌ Error: " + e.message;
+    errorEl.style.color = "#ef4444";
+    errorEl.style.display = "block";
+  }
+}
+
+async function fileToBase64(file){
+  return new Promise((resolve,reject)=>{
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      const base64 = String(result).split(",")[1];
+      resolve(base64);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadPastPaperManual(){
+  const errorEl = document.getElementById("pastpaperError");
+  errorEl.style.display = "none";
+  
+  const level = document.getElementById("ppmanual_level").value.trim();
+  const subject = document.getElementById("ppmanual_subject").value.trim();
+  const year = document.getElementById("ppmanual_year").value.trim();
+  const link = document.getElementById("ppmanual_link").value.trim();
+  const desc = document.getElementById("ppmanual_desc").value.trim();
+  
+  if(!level || !subject || !year || !link){
+    errorEl.textContent = "Level, Subject, Year, and Dropbox link are required.";
+    errorEl.style.display = "block";
+    return;
+  }
+  
+  if(!link.includes("dropbox.com")){
+    errorEl.textContent = "Please provide a valid Dropbox link (must contain dropbox.com)";
+    errorEl.style.display = "block";
+    return;
+  }
+  
+  try{
+    const yearNum = parseInt(year);
+    if(isNaN(yearNum) || yearNum < 2005 || yearNum > new Date().getFullYear()){
+      errorEl.textContent = "Year must be between 2005 and " + new Date().getFullYear();
+      errorEl.style.display = "block";
+      return;
+    }
+    
+    // Ensure link has ?dl=1 for direct download
+    let finalLink = link;
+    if(!finalLink.includes("?dl=1") && !finalLink.includes("?dl=0")){
+      finalLink = link.includes("?") ? link + "&dl=1" : link + "?dl=1";
+    } else {
+      finalLink = link.replace("?dl=0", "?dl=1");
+    }
+    
+    // Save to Firebase
+    await db.ref("pastpapers").push({
+      level,
+      subject,
+      year: yearNum,
+      link: finalLink,
+      description: desc,
+      uploadedBy: auth.currentUser.uid,
+      createdAt: new Date().toISOString()
+    });
+    
+    document.getElementById("ppmanual_level").value = "";
+    document.getElementById("ppmanual_subject").value = "";
+    document.getElementById("ppmanual_year").value = "";
+    document.getElementById("ppmanual_link").value = "";
+    document.getElementById("ppmanual_desc").value = "";
+    
+    errorEl.textContent = "✅ Paper link saved successfully!";
+    errorEl.style.color = "#16a34a";
+    errorEl.style.display = "block";
+    
+    await loadPastPapers();
+  }catch(e){
+    console.error("Upload error:", e);
+    errorEl.textContent = "❌ Error: " + e.message;
+    errorEl.style.color = "#ef4444";
+    errorEl.style.display = "block";
+  }
+}
+
+async function loadPastPapers(){
+  const snap = await db.ref("pastpapers").once("value");
+  const data = snap.val() || {};
+  const list = document.getElementById("pastpaperList");
+  
+  const items = Object.entries(data)
+    .sort((a,b) => new Date(b[1].createdAt) - new Date(a[1].createdAt))
+    .map(([id, pp]) => {
+      const desc = pp.description ? `<div class="note">${pp.description}</div>` : '';
+      return `<div class="item">
+        <h4>${pp.level} • ${pp.subject} (${pp.year})</h4>
+        <div class="note">${new Date(pp.createdAt).toLocaleDateString()}</div>
+        ${desc}
+        <div style="margin-top:8px"><a href="${pp.link}" target="_blank" style="color:var(--btn);text-decoration:none;font-size:13px">📄 View on Dropbox</a></div>
+        <div class="actions" style="margin-top:8px"><button class="btn" onclick="deletePastPaper('${id}')">Delete Paper</button></div>
+      </div>`;
+    }).join("");
+  
+  list.innerHTML = items || `<div class="note">No past papers uploaded yet.</div>`;
+}
+
+async function deletePastPaper(id){
+  if(confirm("Delete this past paper from Firebase? (File remains on Dropbox)")){
+    try{
+      await db.ref("pastpapers/"+id).remove();
+      await loadPastPapers();
+    }catch(e){
+      alert("Error: " + e.message);
+    }
+  }
+}
+</script>
+
+</body>
+</html>

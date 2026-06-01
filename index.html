@@ -1,0 +1,1910 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Basic SEO -->
+<title>Rwamagana Leaders' School | Excellence in Education</title>
+<meta name="description" content="Official website of Rwamagana Leaders' School (RLS). Get the latest news, events, academic updates, and school information.">
+<meta name="keywords" content="Rwamagana Leaders School, RLS, school in Rwanda, secondary school, education Rwanda">
+<meta name="author" content="Rwamagana Leaders' School">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--script of font awesome-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" /><meta property="og:title" content="Rwamagana Leaders' School | Excellence in Education">
+<meta property="og:description" content="Visit RLS official website for news, events, and academic excellence updates.">
+<meta property="og:image" content="https://rls.ac.rw/logo.png">
+<meta property="og:url" content="https://rls.ac.rw">
+<meta property="og:type" content="website">
+<script id="chatway" async="true" src="https://cdn.chatway.app/widget.js?id=UrWkM7ZpaM1Z"></script>
+<!-- Structured Data for Google -->
+<script type="application/ld+json">
+
+        {
+          "@context": "https://schema.org",
+          "@type": "School",
+          "name": "Rwamagana Leaders' School",
+          "alternateName": "RLS",
+          "url": "https://rls.ac.rw/",
+          "logo": "https://rls.ac.rw/image/logo.png",
+          "sameAs": [
+            "https://www.facebook.com/rwamaganaleaders/",
+            "https://x.com/RLeadersSchool",
+            "https://www.youtube.com/@RwamaganaLeadersSchool-c4u"
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "RW",
+            "addressRegion": "Eastern Province",
+            "addressLocality": "Rwamagana"
+          },
+          "telephone": "+250783755971",
+          "email": "info@rls.ac.rw",
+          "description": "Rwamagana Leaders' School is a secondary school in Rwamagana, Rwanda, offering high quality education with a focus on leadership, sustainability and community service."
+        }
+</script>
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="image/logo.png" type="image/png">
+    <title>Rwamagana Leaders' School</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Our Story Section Styles */
+        .our-story-section {
+            margin-top: 50px;
+        }
+        
+        .story-intro {
+            font-size: 1.1rem;
+            color: var(--muted-foreground);
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .timeline-item.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-marker {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-foreground);
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .timeline-content {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px var(--shadow);
+            flex: 1;
+        }
+        
+        .timeline-content h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--foreground);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content p {
+            color: var(--muted-foreground);
+            line-height: 1.6;
+        }
+        
+        .story-cta {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--accent);
+            border-radius: 12px;
+        }
+        
+        .story-cta p {
+            font-size: 1.1rem;
+            color: var(--foreground);
+            margin-bottom: 20px;
+        }
+        
+        .cta-btn {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .cta-btn:hover {
+            background: var(--primary-hover, var(--primary));
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-marker {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                margin-right: 15px;
+            }
+            
+            .timeline-content {
+                padding: 15px;
+            }
+            
+            .timeline-content h4 {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+    <!-- EmailJS CDN -->
+     <script>
+        const firebaseConfig = {
+  apiKey: "AIzaSyD0JQhgoWcyJBOaOaXH-xMsed9V25FA184",
+  authDomain: "rls2025-6f364.firebaseapp.com",
+  databaseURL: "https://rls2025-6f364-default-rtdb.firebaseio.com",
+  projectId: "rls2025-6f364",
+  storageBucket: "rls2025-6f364.firebasestorage.app",
+  messagingSenderId: "662069598409",
+  appId: "1:662069598409:web:7fcf240a20cd1e0537d518",
+  measurementId: "G-T1P0FEYNYW"
+};
+     </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body class="light-theme">
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <img src="image/logo.png" alt="RLS" class="preloader-logo"><p class="preloader-text">Rwamagana Leaders' School</p>
+            <div class="preloader-spinner"></div>
+        </div>
+    </div>
+    
+    <!-- Header/Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <!-- Logo -->
+                <div class="logo-section">
+                    <button onclick="navigateTo('home')" class="logo-btn">
+                        <img src="image/logo.png" 
+                             alt="Rwamagana Leaders' School Logo" class="logo-img">
+                        <h1 class="logo-text">Rwamagana Leaders' School</h1>
+                    </button>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="desktop-nav">
+                    <div class="nav-items">
+                        <a href="#home"><button onclick="navigateTo('home')" class="nav-item active" data-page="home">Home</button></a>
+                        <a href="#about"><button onclick="navigateTo('about')" class="nav-item" data-page="about">About Us</button></a>
+                        <a href="#academics"><button onclick="navigateTo('academics')" class="nav-item" data-page="academics">Academics</button></a>
+                        <a href="#admissions"><button onclick="navigateTo('admissions')" class="nav-item" data-page="admissions">Admissions</button></a>
+                        <a href="#gallery"><button onclick="navigateTo('gallery')" class="nav-item" data-page="gallery">Gallery</button></a>
+                        <a href="#news"><button onclick="navigateTo('news')" class="nav-item" data-page="news">
+                        News & Events <span class="nav-badge news-badge" style="display:none;">0</span>
+                    </button></a>
+                        <button onclick="window.location.href='pastpapers.html'" class="nav-item pastpaper" data-page="pastpapers">Past Papers</button>
+                        <button onclick="navigateTo('contact')" class="nav-item" data-page="contact">Contact</button>
+                        <button class="nav-item" onclick="window.open(
+    'https://accounts.zoho.com/signin?servicename=VirtualOffice&amp;signupurl=https://www.zoho.com/mail/zohomail-pricing.html&amp;serviceurl=https://mail.zoho.com',
+    '_blank')">
+                            Staff Login
+                        </button>
+                        <button onclick="toggleTheme()" class="theme-btn" id="theme-toggle">
+                        
+                            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="mobile-controls">
+                    <button onclick="toggleTheme()" class="theme-btn mobile-theme-btn">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"></circle>
+                            <line x1="12" y1="1" x2="12" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="23"></line>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                            <line x1="1" y1="12" x2="3" y2="12"></line>
+                            <line x1="21" y1="12" x2="23" y2="12"></line>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="mobile-menu-btn" id="mobile-menu-btn">
+                        <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="mobile-nav" id="mobile-nav">
+                <div class="mobile-nav-items">
+                    <button onclick="navigateTo('home')" class="mobile-nav-item" data-page="home">Home</button>
+                    <button onclick="navigateTo('about')" class="mobile-nav-item" data-page="about">About Us</button>
+                    <button onclick="navigateTo('academics')" class="mobile-nav-item" data-page="academics">Academics</button>
+                    <button onclick="navigateTo('admissions')" class="mobile-nav-item" data-page="admissions">Admissions</button>
+                    <button onclick="navigateTo('gallery')" class="mobile-nav-item" data-page="gallery">Gallery</button>
+                    <button onclick="navigateTo('news')" class="mobile-nav-item" data-page="news">
+                    News & Events <span class="nav-badge news-badge" style="display:none;">0</span>
+                </button>
+                    <button onclick="window.location.href='pastpapers.html'" class="mobile-nav-item" data-page="pastpapers">Past Papers</button>
+                    <button onclick="navigateTo('contact')" class="mobile-nav-item" data-page="contact">Contact</button>
+                    <button class="mobile-nav-item" onclick="window.open(
+    'https://accounts.zoho.com/signin?servicename=VirtualOffice&amp;signupurl=https://www.zoho.com/mail/zohomail-pricing.html&amp;serviceurl=https://mail.zoho.com',
+    '_blank')">
+                        Staff Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Home Page -->
+        <section id="home-page" class="page active">
+            <div class="hero-section">
+                <div class="container">
+                    <div class="hero-grid">
+                        <div class="hero-content">
+                            <div class="hero-text fade-in">
+                                <h1 class="hero-title">
+                                    Welcome to 
+                                    <span class="text-gradient">Rwamagana Leaders' School</span>
+                                </h1>
+                                <p class="hero-subtitle">
+                                    Empowering minds, shaping futures. Join our community of learners 
+                                    where excellence meets innovation in education.
+                                </p>
+                            </div>
+                            
+                            <div class="hero-buttons">
+                                <button onclick="navigateTo('admissions')" class="btn btn-primary">Apply Now<i style="margin-left: 10px;" class="fa-solid fa-pen-clip fa-bounce"></i></button>
+                                <button onclick="navigateTo('about')" class="btn btn-outline">Learn More</button>
+                            </div>
+                        </div>
+                        
+                        <div class="hero-image">
+                            <div class="image-container">
+                                <div id="welcome-image"></div>
+                                <div class="decorative-blob blob-1"></div>
+                                <div class="decorative-blob blob-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    // Your Firebase configuration
+    const welcomeSection = document.getElementById("welcome-image");
+    const welcomeRef = ref(db, "welcome");
+
+    // Fetch and display news automatically
+    onValue(welcomeRef, (snapshot) => {
+      const data = snapshot.val();
+      welcomeSection.innerHTML = "";
+      for (const id in data) {
+        const item = data[id];
+        welcomeSection.innerHTML += `
+        ${item.image ? `<img src="${item.image}" class="hero-image">` : ""}
+        `;
+      }
+    });
+  </script>
+
+            </div>
+
+            <!-- Mission Section -->
+            <div class="mission-section">
+                <div class="container">
+                    <div class="section-header">
+                        <h2>Our Mission</h2>
+                        <p>To provide a comprehensive, innovative educational experience that develops critical thinking, 
+                           creativity, and character in every student, preparing them to be responsible global citizens 
+                           and leaders of tomorrow.</p>
+                    </div>
+
+                    <!-- Features Grid -->
+                    <div class="features-grid">
+                        <div class="feature-card fade-in">
+                            <div class="feature-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M12 1v6m0 6v6"></path>
+                                    <path d="m9 9 3 3 3-3"></path>
+                                </svg>
+                            </div>
+                            <h3>Excellence in Education</h3>
+                            <p>Top-tier curriculum designed to prepare students for success in higher education and beyond.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <h3>Expert Faculty</h3>
+                            <p>Dedicated teachers with advanced degrees and passion for nurturing young minds.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                                    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                                    <path d="M4 22h16"></path>
+                                    <path d="M10 14.66V17c0 .40.47.98.97 1.21C12.04 18.75 13 19.54 13 20.5v.5H9v-.5c0-.96.96-1.75 2.03-2.29.5-.23.97-.66.97-1.21v-2.34"></path>
+                                </svg>
+                            </div>
+                            <h3>Award-Winning Programs</h3>
+                            <p>Recognized nationally for our innovative approach to STEM education and arts programs.</p>
+                        </div>
+
+                        <div class="feature-card fade-in">
+                            <div class="feature-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                                </svg>
+                            </div>
+                            <h3>Future Leaders</h3>
+                            <p>A student will be a leader at the end of High school.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="stats-section">
+                <div class="stats-bg"></div>
+                <div class="container">
+                    <div class="stats-grid" id="statsgrid">
+                    </div>
+                </div>
+            </div>
+
+  <!-- Firebase Libraries -->
+  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    // Your Firebase configuration
+    const upnewsSection = document.getElementById("statsgrid");
+    const upnewsRef = ref(db, "StatSection");
+
+    // Fetch and display news automatically
+    onValue(upnewsRef, (snapshot) => {
+      const data = snapshot.val();
+      statsgrid.innerHTML = "";
+      for (const id in data) {
+        const item = data[id];
+        statsgrid.innerHTML += `
+                        <div class="stat-item">
+                            <div class="stat-number">${item.student || 'Undefined Students'}</div>
+                            <div class="stat-label">Students</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${item.facultymembers || 'Undefined Members'}</div>
+                            <div class="stat-label">Faculty Members</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${item.collegeacceptance}</div>
+                            <div class="stat-label">College Acceptance</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${item.yearofexcellence}</div>
+                            <div class="stat-label">Years of Excellence</div>
+                        </div>
+        `;
+      }
+    });
+  </script>
+
+  <!--director of school profile-->
+  <div>
+    <section class="director-profile-section">
+        <div class="container">
+            <div class="director-profile-card">
+                <div class="director-image" id="director-image">
+                </div>
+                                  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    // Your Firebase configuration
+    const directorSection = document.getElementById("director-image");
+    const directorRef = ref(db, "director");
+
+    // Fetch and display news automatically
+    onValue(directorRef, (snapshot) => {
+      const data = snapshot.val();
+      directorSection.innerHTML = "";
+      for (const id in data) {
+        const item = data[id];
+        directorSection.innerHTML += `
+        ${item.image ? `<img src="${item.image}">` : ""}
+        `;
+      }
+    });
+  </script>
+
+                <div class="director-info">
+                    <h2>Mr. Moses Ssenyonjo</h2>
+                    <h4>Director, Rwamagana Leaders' School</h4>
+                    <p>With experience in educational leadership, Mr. Moses Ssenyonjo Doe has been instrumental in shaping the vision and growth of Rwamagana Leaders' School. His commitment to academic excellence and student development has earned him recognition as a leading figure in the education sector.</p>
+                </div>
+                <!--Contact of director-->
+                <div class="director-contact">
+                                <h3>Contact Information</h3>
+                                <p>
+                                    <strong>Director's Phone:</strong>
+                                    <a href="tel:+250788982206" style="color: gold; text-decoration: none;">+250 788 982 206</a>
+                                </p>
+                                <p>
+                                    <strong>Director's Email:</strong>
+                                    <a href="mailto:director@rls.ac.rw" style="color: gold; text-decoration: none;">director@rls.ac.rw</a>
+                                </p>
+                            </div>
+                </div>
+        </section>
+
+    <section class="partners-block">
+        <div class="container">
+            <h2>Our Partners</h2>
+            <p class="partners-intro">We partner with organisations that support education and school development.</p>
+            <div class="partners-grid">
+                <a class="partner-card" href="https://www.nesa.gov.rw" target="_blank" rel="noopener" title="NESA Rwanda">
+                    <img src="https://www.nesa.gov.rw/fileadmin/user_upload/NESA/Background_Images/nesalogo.png" alt="NESA Rwanda logo">
+                    <div class="partner-name">NESA Rwanda</div>
+                </a>
+
+                <a class="partner-card" href="https://rwandaschoolproject.org" target="_blank" rel="noopener" title="Rwanda School Project">
+                    <img src="https://rwandaschoolproject.org/wp-content/uploads/2021/12/cropped-rwanda-school-project.png" alt="Rwanda School Project logo">
+                    <div class="partner-name">Rwanda School Project</div>
+                </a>
+
+                <a class="partner-card" href="https://weraise.org" target="_blank" rel="noopener" title="We Raise">
+                    <img src="https://weraise.org/wp-content/uploads/2022/01/wr-logo-tm.png" alt="We Raise logo">
+                    <div class="partner-name">We Raise</div>
+                </a>
+
+                <a class="partner-card" href="https://www.segalfamilyfoundation.org/" target="_blank" rel="noopener" title="Segal Family Foundation">
+                    <img src="https://rwandaschoolproject.org/wp-content/uploads/2014/08/SFF-logo.png" alt="Segal Family Foundation logo">
+                    <div class="partner-name">Segal Family Foundation</div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+                </section>
+
+        <!-- About Page -->
+        <section id="about-page" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1>About Rwamagana Leaders' School</h1>
+                    <p>Discover our rich history, dedicated mission, and the exceptional team that makes Rwaamagana Leaders' School a leader in educational excellence.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- History Section -->
+                <div class="content-section">
+
+                    <!-- Our Story Section -->
+                    <div class="our-story-section">
+                        <h3 class="section-title">Our Story</h3>
+                        <p class="story-intro">From humble beginnings to becoming a beacon of education in Rwanda, discover the inspiring journey of Rwamagana Leaders' School over the past two decades.</p>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-marker"><i class="fa-solid fa-seedling"></i></div>
+                                <div class="timeline-content">
+                                    <h4>Beginning (2005)</h4>
+                                    <p>Idea of the school begins after discussions with Rwandan educators following the 1994 Genocide.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker"><i class="fa-solid fa-handshake"></i></div>
+                                <div class="timeline-content">
+                                    <h4>Foundation (2006–2008)</h4>
+                                    <p>Fundraising, non-profit registration, land purchase, and first volunteers.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker"><i class="fa-solid fa-chalkboard-teacher"></i></div>
+                                <div class="timeline-content">
+                                    <h4>First Classes (2009–2010)</h4>
+                                    <p>English Enrichment Program starts with 23 students. Official opening and first classroom building completed.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker"><i class="fa-solid fa-building"></i></div>
+                                <div class="timeline-content">
+                                    <h4>Growth (2011–2014)</h4>
+                                    <p>Expansion of facilities (kitchen, dorms, labs, cafeteria) and strong academic performance.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker"><i class="fa-solid fa-graduation-cap"></i></div>
+                                <div class="timeline-content">
+                                    <h4>Expansion (2015–2018)</h4>
+                                    <p>First graduating class. Girls' dorm, computer lab, solar power, and student achievements.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker"><i class="fa-solid fa-sync-alt"></i></div>
+                                <div class="timeline-content">
+                                    <h4>Transformation (2019–2020)</h4>
+                                    <p>Name changed to Rwamagana Leaders' School; new leadership. COVID-19 response, community support, and boarding system.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker"><i class="fa-solid fa-rocket"></i></div>
+                                <div class="timeline-content">
+                                    <h4>Modern Development (2021–2023)</h4>
+                                    <p>Campus expansion, new academic system, library, and admin building.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker"><i class="fa-solid fa-users"></i></div>
+                                <div class="timeline-content">
+                                    <h4>Impact & Inclusion (2023–2024)</h4>
+                                    <p>Inclusion (disabled students), robotics recognition, university fair, endowment fund.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-marker"><i class="fa-solid fa-eye"></i></div>
+                                <div class="timeline-content">
+                                    <h4>Vision (2025)</h4>
+                                    <p>Vision to become a top school and grow from 200 to 400 students.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="story-cta" style="margin-bottom: 3rem;">
+                            <p>Join us in continuing this legacy of excellence and leadership.</p>
+                            <button onclick="navigateTo('admissions')" class="cta-btn">Apply Now</button>
+                        </div>
+                    </div>
+
+                <!-- Vision Section -->
+                <div class="vision-section">
+                    <div class="card">
+                        <h2>Our Vision</h2>
+                        <div class="vision-grid">
+                            <div class="vision-item">
+                                <h3>Educational Excellence</h3>
+                                <p>To be recognized globally as a premier educational institution that fosters innovation, critical thinking, and lifelong learning in every student.</p>
+                            </div>
+                            <div class="vision-item">
+                                <h3>Global Citizens</h3>
+                                <p>To develop responsible, ethical, and engaged global citizens who contribute positively to their communities and the world at large.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Values Section -->
+                <div class="values-section">
+                    <div class="values-bg"></div>
+                    <div class="values-content">
+                        <h2>Our Core Values</h2>
+                        <div class="values-grid">
+                            <div class="value-item">
+                                <h3>Integrity</h3>
+                                <p>Building character through honest and ethical behavior</p>
+                            </div>
+                            <div class="value-item">
+                                <h3>Innovation</h3>
+                                <p>Embracing new ideas and creative problem-solving</p>
+                            </div>
+                            <div class="value-item">
+                                <h3>Inclusivity</h3>
+                                <p>Celebrating diversity and fostering belonging for all</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Us Statement Section -->
+                <div class="about-us-section">
+                    <!-- Mission Statement -->
+                    <div class="mission-statement-card">
+                        <div class="statement-header">
+                            <h2>Our Commitment</h2>
+                            <div class="header-underline"></div>
+                        </div>
+                        <p class="mission-statement-text">
+                            Rwamagana Leaders' School (RLS) is committed to building socially, environmentally, and economically sustainable education in Rwanda.
+                        </p>
+                    </div>
+
+                    <!-- Pillars Grid -->
+                    <div class="mb-30">
+                        <h3 class="section-title">Our Pillars</h3>
+                        <div class="pillars-grid">
+                            <div class="pillar-card">
+                                <div class="pillar-icon"><i class="fa-solid fa-handshake"></i></div>
+                                <h4>School Culture</h4>
+                                <p>We foster a strong school culture rooted in respect, teamwork, mentorship, and character development. Through small mentorship groups called Crews, students grow academically and personally while learning to compete with their own standards rather than against each other.</p>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-icon"><i class="fa-solid fa-earth-americas"></i></div>
+                                <h4>Community Service</h4>
+                                <p>Community service is central to our mission. Students actively engage in meaningful projects that build long-term relationships and strengthen the surrounding community.</p>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-icon"><i class="fa-solid fa-recycle"></i></div>
+                                <h4>Sustainability</h4>
+                                <p>As a model of sustainability, our campus integrates rainwater harvesting, solar power, biogas systems, recycling, and small-scale agriculture. We are developing an A-Level curriculum that prepares students for future careers in green architecture, alternative energy, environmental law, water management, and other sustainability-focused fields.</p>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-icon"><i class="fa-sharp fa-solid fa-bag-shopping"></i></div>
+                                <h4>Economic Independence</h4>
+                                <p>RLS aims for increasing economic independence through tuition contributions and income-generating projects while continuing to support students in need.</p>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-icon"><i class="fa-solid fa-brain"></i></div>
+                                <h4>Expeditionary Learning</h4>
+                                <p>We use Expeditionary Learning (EL) to promote critical thinking, inquiry-based learning, strong literacy skills, and character development alongside academic excellence.</p>
+                            </div>
+                            <div class="pillar-card">
+                                <div class="pillar-icon"><i class="fa-solid fa-suitcase"></i></div>
+                                <h4>Legacy & Leadership</h4>
+                                <p>Founded in 2010 through the collaboration of Robin Strickler and Karl Smith, RLS was established to provide high-quality secondary education, with a special emphasis on girls and vulnerable students.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Governance Section -->
+                    <div class="governance-section">
+                        <h3 class="section-title">Our Governance</h3>
+                        <div class="governance-grid">
+                            <div class="governance-card">
+                                <div class="governance-icon"><i class="fa-solid fa-earth-europe"></i></div>
+                                <h4>Rwanda School Project Board</h4>
+                                <p><strong>Location:</strong> North America</p>
+                                <p class="governance-description">Overseeing finance, fundraising, and international operations to ensure sustainable growth and global partnerships.</p>
+                            </div>
+                            <div class="governance-card">
+                                <div class="governance-icon"><i class="fa-solid fa-house-chimney-crack"></i></div>
+                                <h4>LEDO Board</h4>
+                                <p><strong>Location:</strong> Rwanda</p>
+                                <p class="governance-description">Overseeing educational leadership, local operations, and compliance with Rwandan laws to ensure quality and accountability.</p>
+                            </div>
+                        </div>
+                        <div class="governance-footer">
+                            <p>Together, we are shaping leaders who will contribute to Rwanda's continued transformation and sustainable future.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academics Page -->
+        <section id="academics-page" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1>Academics</h1>
+                    <p>Our comprehensive academic program is designed to challenge and inspire students at every level, preparing them for success in higher education and beyond.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- Academic Programs -->
+                <div class="mb-20">
+                    <h2>Our Programs</h2>
+                    <div class="programs-grid">
+                        <div class="program-card card-hover">
+                            <div class="program-icon">
+                            </div>
+                            <h3>MPC</h3>
+                            <div class="program-badge">Science combination</div>
+                            <p>Mathematics Physics and Computer Science</p>
+                            <div class="program-highlights">
+                                <span>Technologies</span>
+                                <span>Integrand</span>
+                                <span>Projectile Motion</span>
+                                <span>Computer Science</span>
+                            </div>
+                        </div>
+
+                        <div class="program-card card-hover">
+                            <div class="program-icon">
+                            </div>
+                            <h3>PCM</h3>
+                            <div class="program-badge">Science combination</div>
+                            <p>Mathematics Physics and Chemistry</p>
+                            <div class="program-highlights">
+                                <span>Lenses</span>
+                                <span>Atoms</span>
+                                <span>Derivatives</span>
+                                <span>Statistics</span>
+                                <span>Problem Solving</span>
+                            </div>
+                        </div>
+
+                        <div class="program-card card-hover">
+                            <div class="program-icon">
+                            </div>
+                            <h3>MPG</h3>
+                            <div class="program-badge">Science Combination</div>
+                            <p>Mathematics, Physics and Geography</p>
+                            <div class="program-highlights">
+                                <span>Earth</span>
+                                <span>Algorithms</span>
+                                <span>Volcanoes</span>
+                                <span>Telescopes</span>
+                            </div>
+                        </div>
+
+                        <div class="program-card card-hover">
+                            <div class="program-icon">
+                            </div>
+                            <h3>HGL</h3>
+                            <div class="program-badge">Arts Combination</div>
+                            <p>History, Geography, and Literature</p>
+                            <div class="program-highlights">
+                                <span>Genocide</span>
+                                <span>Atmosphere</span>
+                                <span>Human Rights</span>
+                                <span>Readings</span>
+                            </div>
+                        </div>
+
+                        <div class="program-card card-hover">
+                            <div class="program-icon">
+                            </div>
+                            <h3>MEC</h3>
+                            <div class="program-badge">Science Combination</div>
+                            <p>Mathematics, Economics and Computer Science</p>
+                            <div class="program-highlights">
+                                <span>Algorithms</span>
+                                <span>Statistics</span>
+                                <span>Programming</span>
+                                <span>Funds</span>
+                                <span>Business</span>
+                            </div>
+                        </div>
+
+                        <div class="program-card card-hover">
+                            <div class="program-icon">
+                            </div>
+                            <h3>MEG</h3>
+                            <div class="program-badge">Arts Combination</div>
+                            <p>Mathematics, Economics and Geography</p>
+                            <div class="program-highlights">
+                                <span>Algorithms</span>
+                                <span>Statistics</span>
+                                <span>Programming</span>
+                                <span>Funds</span>
+                                <span>Business</span>
+                            </div>
+                        </div>
+
+                        <div class="program-card card-hover">
+                            <div class="program-icon">
+                            </div>
+                            <h3>PCB</h3>
+                            <div class="program-badge">Science Combination</div>
+                            <p>Physics, Chemistry and Biology</p>
+                            <div class="program-highlights">
+                                <span>Atoms</span>
+                                <span>Molecules</span>
+                                <span>Fiction</span>
+                                <span>Expression</span>
+                            </div>
+                        </div>
+
+                        <div class="program-card card-hover">
+                            <div class="program-icon">
+                            </div>
+                            <h3>MCB</h3>
+                            <div class="program-badge">Science Combination</div>
+                            <p>Mathematics, Chemistry and Biology</p>
+                            <div class="program-highlights">
+                                <span>Algorithms</span>
+                                <span>Statistics</span>
+                                <span>Culture</span>
+                                <span>Change</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Curriculum Overview -->
+                <div class="curriculum-section">
+                    <h2>Curriculum Overview</h2>
+                    
+                    <!-- Grade Level Tabs -->
+                    <div class="grade-tabs">
+                        <button class="grade-tab active" data-grade="elementary">Elementary Subjects</button>
+                        <button class="grade-tab" data-grade="high">Advanced Subjects</button>
+                    </div>
+
+                    <!-- Curriculum Content -->
+                    <div class="curriculum-content">
+                        <div class="grade-content active" id="elementary">
+                            <h3>Elementary Subjects</h3>
+                            <p>Building strong foundations in core subjects with hands-on learning</p>
+                            <div class="curriculum-grid">
+                                <div class="subject-item">
+                                    <span>English</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>French</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>Kinyarwnda</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>Environmental Studies</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>Religion</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>Physical Education & Sports</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="grade-content" id="high">
+                            <h3>Advanced Subject</h3>
+                            <p>College preparatory curriculum with Advanced Placement options</p>
+                            <div class="curriculum-grid">
+                                <div class="subject-item">
+                                    <span>Physics</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>Mathematics</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>Chemistry</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>Biology</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>Computer Science</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>Geography</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>Literature</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                                <div class="subject-item">
+                                    <span>History</span>
+                                    <span class="subject-hours">40 min / Period</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- School Levels -->
+                <div class="levels-section">
+                    <h2>School Levels</h2>
+                    <p>We offer both Ordinary and Advanced levels to support student progression.</p>
+                    <div class="levels-grid">
+                        <div class="level-card">
+                            <h3>Ordinary Level</h3>
+                            <p>(O' Level)</p>
+                            <ul class="level-list">
+                                <li>S1</li>
+                                <li>S2</li>
+                                <li>S3</li>
+                            </ul>
+                        </div>
+
+                        <div class="level-card">
+                            <h3>Advanced Level</h3>
+                            <p>(A' Level)</p>
+                            <ul class="level-list">
+                                <li>S4</li>
+                                <li>S5</li>
+                                <li>S6</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="portal-cta">
+                        <p>Access our parent portal for more information about your student(s). You can check their progress and communicate with teachers.</p>
+                        <a href="https://parent.urubuto.rw/#/" target="_blank" rel="noopener" class="btn-portal">
+                            <i class="fa-solid fa-user-gear"></i> Parent Portal
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Sample Weekly Schedule -->
+                <div class="schedule-section">
+                    <h2>Sample Weekly Schedule</h2>
+                    <p>High School (O' Level & A' Level)</p>
+                    
+                    <div class="schedule-table-container">
+                        <table class="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>Activities</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>5:30-6:00</td>
+                                    <td><div class="schedule-item"><strong>Wake Up in the Morning</strong><br><small>Room 201</small></div></td>
+                                    <td><div class="schedule-item"><strong>Taking shower</strong><br><small>Room 105</small></div></td>
+                                    <td><div class="schedule-item"><strong>Other...</strong><br><small>Lab A</small></div></td>
+                                    <td><div class="schedule-item"><strong>Wearing School unform</strong><br><small>Room 201</small></div></td>
+                                    <td><div class="schedule-item"><strong>Getting ready for 1st Prep</strong><br><small>Room 105</small></div></td>
+                                </tr>
+                                <tr>
+                                    <td>6:00-7:00</td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong>First Prep</strong><br><small>All rooms</small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                </tr>
+                                <tr>
+                                    <td>7:00-8:00</td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item" style="color: green;"><strong>Break First</strong><br><small>Cafeteria</small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                </tr>
+                                <tr>
+                                    <td>8:00-10:40</td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong>Class Time</strong><br><small>All Rooms</small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                </tr>
+
+                                <tr>
+                                    <td>11:00-12:20</td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong>Class Time</strong><br><small>All Rooms</small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                </tr>
+                                <tr>
+                                    <td>12:20-13:20</td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong>Luanch Time</strong><br><small>Cafeteria</small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                </tr>
+                                <tr>
+                                    <td>13:20-16:00</td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong>Class Time</strong><br><small>All Rooms</small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                </tr>
+                                <tr>
+                                    <td>16:00-19:10</td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong>First Prep</strong><br><small>All Student</small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                </tr>
+                                <tr>
+                                    <td>19:10-20:00</td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong>Supper</strong><br><small>All Students</small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                </tr>
+                                <tr>
+                                    <td>20:00-21:30</td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong>Second Prep</strong><br><small>All Rooms</small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                    <td><div class="schedule-item"><strong></strong><br><small></small></div></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Special Programs -->
+                <div class="special-programs">
+                    <h2>Special Programs & Opportunities</h2>
+                    <div class="programs-showcase">
+                        <div class="showcase-item fade-in">
+                            <h3>Advanced Placement</h3>
+                            <p>College-level courses in 15+ subjects for high school students</p>
+                        </div>
+                        <div class="showcase-item fade-in">
+                            <h3>Dual Enrollment</h3>
+                            <p>Earn college credits while completing high school requirements</p>
+                        </div>
+                        <div class="showcase-item fade-in">
+                            <h3>STEM Academy</h3>
+                            <p>Specialized program focusing on Science, Technology, Engineering, and Math</p>
+                        </div>
+                        <div class="showcase-item fade-in">
+                            <h3>International Baccalaureate</h3>
+                            <p>Globally recognized diploma program for college-bound students</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact-page" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1>Contact Us</h1>
+                    <p>Get in touch with us to learn more about our programs or schedule a visit.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Visit Our Campus</h3>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                            </div>
+                            <div>
+                                <p>Rwamagana District, Eastern Province</p>
+                                <p>Republic of Rwanda</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.40 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.40 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                                </svg>
+                            </div>
+                            <p>+250 788 123 406</p>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <p>info@rls.ac.rw</p>
+                        </div>
+                        <div class="contact-item">
+                        <div class="footer-qr" id="footer-qr"></div>
+                                              <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    // Your Firebase configuration
+    const qr = document.getElementById("footer-qr");
+    const qrRef = ref(db, "qr");
+
+    // Fetch and display news automatically
+    onValue(qrRef, (snapshot) => {
+      const data = snapshot.val();
+      qr.innerHTML = "";
+      for (const id in data) {
+        const item = data[id];
+        qr.innerHTML += `
+                ${item.image ? `<img id="footer-qr-img" src="${item.image}" alt="Scan QR code"> ` : ""}
+                <span class="footer-qr-label">${item.text}</span>
+        `;
+      }
+    });
+  </script>
+                        </div>
+                        <div class="contact-item contact-map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1023.6557899004487!2d30.43219249523236!3d-1.9404070157326903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19db4426fbb3258b%3A0x81255b8c48b53500!2sRwamagana%20Leaders&#39;%20School!5e1!3m2!1sen!2srw!4v1775645541356!5m2!1sen!2srw"
+                                width="600"
+                                height="450"
+                                style="border:0; width:100%; max-width:600px;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Send us a Message</h3>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" name="from_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="from_email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" title="Send Message">Send Message</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admissions Page -->
+        <section id="admissions-page" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1>Admissions</h1>
+                    <p>Join our community of learners and embark on an educational journey that will prepare you for success in college and beyond.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <!-- Admission Process -->
+                <div class="process-section">
+                    <h2>Admission Process</h2>
+                    <div class="process-grid">
+                        <div class="process-step card-hover">
+                            <div class="step-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14,2 14,8 20,8"></polyline>
+                                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                                    <polyline points="10,9 9,9 8,9"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Submit Application</h3>
+                            <p>Complete the online application form with all required documents</p>
+                        </div>
+
+                        <div class="process-step card-hover">
+                            <div class="step-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                            </div>
+                            <h3>Schedule Interview</h3>
+                            <p>Arrange a meeting with our admissions team and take a campus tour</p>
+                        </div>
+
+                        <div class="process-step card-hover">
+                            <div class="step-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22,4 12,14.01 9,11.01"></polyline>
+                                </svg>
+                            </div>
+                            <h3>Receive Decision</h3>
+                            <p>Get your admission decision within 7-10 business days</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tuition Information -->
+                <div class="tuition-section">
+                    <h2>Tuition & Fees</h2>
+                    <div class="tuition-table-container">
+                        <table class="tuition-table">
+                            <thead>
+                                <tr>
+                                    <th>Levels</th>
+                                    <th>Borders</th>
+                                    <th>Day Scholars</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Ordinary Level</td>
+                                    <td id="tuition-ordinary-border">430,000 Rwf</td>
+                                    <td id="tuition-ordinary-day">220,000 Rwf</td>
+                                </tr>
+                                <tr>
+                                    <td>Advanced Level</td>
+                                    <td id="tuition-advanced-border">430,000 Rwf</td>
+                                    <td id="tuition-advanced-day">220,000 Rwf</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Application Form -->
+                <div class="application-form-section">
+                    <div class="form-container card">
+                        <h2>Online Application Form</h2>
+                        <form id="admissions-form" class="admissions-form">
+                            <!-- Student Information -->
+                            <div class="form-section">
+                                <h3>Student Information</h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="student-first-name">First Name *</label>
+                                        <input type="text" id="student-first-name" name="studentFirstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="student-last-name">Last Name *</label>
+                                        <input type="text" id="student-last-name" name="studentLastName" required>
+                                    </div>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="date-of-birth">Date of Birth *</label>
+                                        <input type="date" id="date-of-birth" name="dateOfBirth" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="grade">Applying for Grade *</label>
+                                        <select id="grade" name="grade" required>
+                                            <option value="">Select grade</option>
+                                            <option value="1st">Grade A / 100% - 80%</option>
+                                            <option value="2nd">Grade B / 79% - 75%</option>
+                                            <option value="3rd">Grade C / 74% - 70%</option>
+                                            <option value="4th">Grade D / 69% - 65%</option>
+                                            <option value="5th">Grade E / 64% - 60%</option>
+                                            <option value="6th">Grade S / 59% - 40%</option>
+                                            <option value="7th">Grade F / 49% - Below</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Parent/Guardian Information -->
+                            <div class="form-section">
+                                <h3>Parent/Guardian Information</h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="parent-first-name">First Name *</label>
+                                        <input type="text" id="parent-first-name" name="parentFirstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="parent-last-name">Last Name *</label>
+                                        <input type="text" id="parent-last-name" name="parentLastName" required>
+                                    </div>
+                                </div>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="parent-email">Email Address *</label>
+                                        <input type="email" id="parent-email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="parent-phone">Phone Number *</label>
+                                        <input type="tel" id="parent-phone" name="phone" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Address Information -->
+                            <div class="form-section">
+                                <h3>Address Information</h3>
+                                <div class="form-group">
+                                    <label for="address">Street Address *</label>
+                                    <input type="text" id="address" name="address" required>
+                                </div>
+                                <div class="form-grid-3">
+                                    <div class="form-group">
+                                        <label for="city">City *</label>
+                                        <input type="text" id="city" name="city" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state">State *</label>
+                                        <input type="text" id="state" name="state" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Academic Information -->
+                            <div class="form-section">
+                                <h3>Academic Information</h3>
+                                <div class="form-group">
+                                    <label for="previous-school">Previous School</label>
+                                    <input type="text" id="previous-school" name="previousSchool">
+                                </div>
+                                <div class="form-group">
+                                    <label for="academic-interests">Academic Interests</label>
+                                    <input type="text" id="academic-interests" name="academicInterests" placeholder="e.g., Mathematics, Science, Arts, Literature">
+                                </div>
+                                <div class="form-group">
+                                    <label for="extracurriculars">Extracurricular Activities</label>
+                                    <input type="text" id="extracurriculars" name="extracurriculars" placeholder="e.g., Sports, Music, Drama, Volunteer work">
+                                </div>
+                            </div>
+
+                            <!-- Personal Essay -->
+                            <div class="form-section">
+                                <div class="form-group">
+                                    <label for="essay">Personal Essay *</label>
+                                    <p class="form-help">Please write a brief essay (minimum 100 characters) about why you want to attend Rwaamagana Leaders' School.</p>
+                                    <textarea id="essay" name="essay" rows="5" required></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Agreement -->
+                            <div class="form-section">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="agreement" name="agreement" required>
+                                    <label for="agreement">I agree to the terms and conditions and confirm that all information provided is accurate. *</label>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-large">Submit Application</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery-page" class="page">
+            <!--Video of graduation-->
+            <div class="video-container">
+                <div id="video-cont"></div>
+                  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    // Your Firebase configuration
+    const video = document.getElementById("video-cont");
+    const videoRef = ref(db, "graduationvideo");
+
+    // Fetch and display news automatically
+    onValue(videoRef, (snapshot) => {
+      const data = snapshot.val();
+      video.innerHTML = "";
+      for (const id in data) {
+        const item = data[id];
+        video.innerHTML += `
+      ${item.video}
+        `;
+      }
+    });
+  </script>
+
+                <div class="video-overlay" id="video-overlay">
+                </div>
+    <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    // Your Firebase configuration
+    const Videohead = document.getElementById("video-overlay");
+    const VideoheadRef = ref(db, "graduationhead");
+
+    // Fetch and display news automatically
+    onValue(VideoheadRef, (snapshot) => {
+      const data = snapshot.val();
+      Videohead.innerHTML = "";
+      for (const id in data) {
+        const item = data[id];
+        Videohead.innerHTML += `
+                          <h2>${item.head}</h2>
+                        <p>${item.content}</p>
+
+
+        `;
+      }
+    });
+  </script>
+
+                <style>
+                .video-container {
+                    position: relative;
+                    width: 100%;
+                    height: 400px;
+                    margin-top: 40px;
+                }
+                .video-container iframe {
+                    border-radius: 8px;
+                    /* customize frame to center */
+                    position: absolute;
+                    top: 30%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+
+                }
+                @media (max-width: 768px) {
+                    .video-container iframe {
+                        height: 300px;
+                        margin-top: 20px;
+                        width: 100%;
+                    }
+                }
+                .video-overlay {
+                    position: relative;
+                    top: 85%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: white;
+                    text-align: center;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    padding: 20px;
+                    border-radius: 10px;
+                }
+                .video-overlay h2 {
+                    font-size: 2em;
+                    margin-bottom: 10px;
+                }
+                .video-overlay p {
+                    font-size: 1.2em;
+                }
+                @media (max-width: 768px) {
+                    .video-overlay h2 {
+                        font-size: 1.2em;
+                    }
+                    .video-overlay p {
+                        font-size: 0.7em;
+                    }
+                }
+                </style>
+            </div>
+            <div class="page-header">
+                <div class="container">
+                    <h1>Photo Gallery</h1>
+                    <p>Explore our vibrant campus life, state-of-the-art facilities, and memorable moments that make Rwamagana Leaders' School a special place to learn and grow.</p>
+                </div>
+            </div>
+
+            <div class="container">
+
+                <!-- Gallery Grid -->
+                <div class="gallery-grid" id="gallery-grid" style="margin-top: 50px;"></div>
+
+                <!-- More photos link -->
+                <div class="more-photos">
+                    <p>See more photos from our school on <a href="https://drive.google.com/drive/folders/1l79iI9wg43HIP1z6PxP6_i3h9MGpH_-r?usp=sharing" target="_blank" rel="noopener">Google Drive</a>.</p>
+                </div>
+
+                <!-- Lightbox Modal -->
+                <div id="lightbox" class="lightbox">
+                    <div class="lightbox-content">
+                        <span class="lightbox-close" style="background-color: rgba(167, 0, 0, 0.623);">&times;</span>
+                        <img id="lightbox-image" src="" alt="">
+                            <a id="lightbox-download" class="lightbox-download" href="#" download style="display:none;">Download</a>
+                        <div class="lightbox-info">
+                            <h3 id="lightbox-title"></h3>
+                            <p id="lightbox-category"></p>
+                        </div>
+                        <button class="lightbox-nav lightbox-prev" id="lightbox-prev">&#8249;</button>
+                        <button class="lightbox-nav lightbox-next" id="lightbox-next">&#8240;</button>
+                    </div>
+                </div>
+            </div>
+              <!-- Firebase Libraries -->
+  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    // Your Firebase configuration
+    const gallery = document.getElementById("gallery-grid");
+    const galleryRef = ref(db, "rlsphotos");
+
+    // Fetch and display news automatically
+    onValue(galleryRef, (snapshot) => {
+      const data = snapshot.val();
+      gallery.innerHTML = "";
+      for (const id in data) {
+        const item = data[id];
+        gallery.innerHTML += `
+                    <div class="gallery-item card-hover" title="${item.head}">
+                            ${item.image ? `<img src="${item.image}" loading="lazy">` : ""}                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h3>${item.head}</h3>
+                                <p>${item.content} <br> <b>${item.date}</b></p>
+                            </div>
+                        </div>    
+                    </div>
+        `;
+      }
+    });
+  </script>
+
+
+        </section>
+
+        <section id="news-page" class="page">
+            <div class="page-header">
+                <div class="container">
+                    <h1>News & Events</h1>
+                    <p>Stay updated with the latest news and upcoming events at our school.</p>
+                </div>
+            </div>
+
+            <div class="container">
+                
+                <!-- Latest News -->
+                <div class="news-section">
+                    <h2>Latest News</h2>
+                        <div class="search-bar" style="margin-bottom:0.75rem;">
+                            <input type="search" data-live-search=".news-item, .event-item" placeholder="Search news & events" aria-label="Search news and events">
+                        </div><br>
+
+                    <div class="news-grid">
+                        
+                      <div id="news-section"></div>
+
+  <!-- Firebase Libraries -->
+  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Your Firebase configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyD0JQhgoWcyJBOaOaXH-xMsed9V25FA184",
+  authDomain: "rls2025-6f364.firebaseapp.com",
+  databaseURL: "https://rls2025-6f364-default-rtdb.firebaseio.com",
+  projectId: "rls2025-6f364",
+  storageBucket: "rls2025-6f364.firebasestorage.app",
+  messagingSenderId: "662069598409",
+  appId: "1:662069598409:web:7fcf240a20cd1e0537d518",
+  measurementId: "G-T1P0FEYNYW"
+};
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+
+    const newsSection = document.getElementById("news-section");
+    const newsRef = ref(db, "news");
+
+    // Fetch and display news automatically
+    onValue(newsRef, (snapshot) => {
+      const data = snapshot.val();
+      newsSection.innerHTML = "";
+      
+      if (data) {
+        // Convert to array and sort by date (latest first)
+        const newsArray = Object.entries(data).map(([id, item]) => ({ id, ...item }));
+        
+        // Sort by date (latest first) with error handling
+        newsArray.sort((a, b) => {
+          try {
+            const dateA = new Date(a.date);
+            const dateB = new Date(b.date);
+            return dateB - dateA; // Latest first (descending order)
+          } catch (error) {
+            console.warn('Error sorting dates:', error, a.date, b.date);
+            return 0; // Keep original order if dates can't be parsed
+          }
+        });
+        
+        // Display sorted news
+        newsArray.forEach(item => {
+          // Format date for display
+          let displayDate = item.date;
+          try {
+            const dateObj = new Date(item.date);
+            displayDate = dateObj.toLocaleDateString('en-US', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            });
+          } catch (error) {
+            console.warn('Error formatting date:', error, item.date);
+          }
+          
+          newsSection.innerHTML += `
+                        <article class="news-item card card-hover">
+                            <div class="news-content">
+                                <div class="news-meta">
+                                    <span class="news-date">${displayDate}</span>
+                                    <span class="news-category">${item.category}</span>
+                                </div>
+                                <h3>${item.title}</h3>
+                                <p>${item.content}</p>
+                            </div>
+                        </article> <br>
+          `;
+        });
+      }
+    });
+  </script>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="events-section">
+                    <h2>Upcoming Events</h2>
+                    <div class="events-list">
+                                              <div id="upnews-section"></div>
+
+  <!-- Firebase Libraries -->
+  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    // Your Firebase configuration
+    const upnewsSection = document.getElementById("upnews-section");
+    const upnewsRef = ref(db, "upcomingnews");
+
+    // Fetch and display news automatically (also update badge count)
+    onValue(upnewsRef, (snapshot) => {
+      const data = snapshot.val();
+      // update nav badge with number of upcoming events
+      const count = data ? Object.keys(data).length : 0;
+      const badges = document.querySelectorAll('.news-badge');
+      badges.forEach(badge => {
+        badge.textContent = count;
+        badge.style.display = count > 0 ? 'inline-block' : 'none';
+      });
+
+      upnewsSection.innerHTML = "";
+      for (const id in data) {
+        const item = data[id];
+        upnewsSection.innerHTML += `
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="event-month">${item.date}</span>
+                                <span class="event-day">${item.category}</span>
+                            </div>
+                            <div class="event-details">
+                                <h3>${item.title}</h3>
+                                <p>${item.content}</p>
+                                <div class="event-time">Upcoming</div>
+                            </div>
+                        </div> <br>
+        `;
+      }
+    });
+  </script>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Rwamagana Leaders' School</h3>
+                    <p>...Where Education is for life...</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/rwamaganaleaders/" class="social-link" target="_blank" title="FaceBook">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/RLeadersSchool" class="social-link" target="_blank" title="X - Twitter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 4l11.733 16h4.267l-11.733 -16z" /><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" /></svg>                        </a>
+                        <a href="https://www.youtube.com/@RwamaganaLeadersSchool-c4u" class="social-link" target="_blank" title="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-youtube"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z" /><path d="M10 9l5 3l-5 3z" /></svg>                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><button onclick="navigateTo('home')">Home</button></li>
+                        <li><button onclick="navigateTo('about')">About Us</button></li>
+                        <li><button onclick="navigateTo('academics')">Academics</button></li>
+                        <li><button onclick="navigateTo('admissions')">Admissions</button></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><button onclick="navigateTo('gallery')">Gallery</button></li>
+                        <li><button onclick="navigateTo('news')">News & Events</button></li>
+                        <li><button onclick="navigateTo('contact')">Contact</button></li>
+                        <li><button onclick="window.open('https://parent.urubuto.rw/#/', '_blank')" class="Unique_button">Parent Portal</button></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info-footer">
+                        <p>Rwamagana District, Eastern Province<br>Republic of Rwanda</p>
+                        <p>+250 788 982 206 <span style="font-style: italic; ">(Director)</span></p>
+                        <p>info@rls.ac.rw</p>
+                    </div>
+                </div>
+                <!-- partners removed from footer (moved to home page under director) -->
+            </div>
+            
+
+            <div class="footer-bottom">
+                <div class="footer-separator"></div>
+                <div class="footer-bottom-content">
+                    <p>&copy; <span id="year"></span> <script>document.getElementById("year").textContent = new Date().getFullYear();</script> <b> Rwamagana Leaders' School </b>. All rights reserved.</p>
+                    <div class="footer-links">
+                        <button>Privacy Policy</button>
+                        <button>Terms of Service</button>
+                        <button>Accessibility</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script type="module">
+      import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+      import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+      const tuitionFields = {
+        ordBorder: document.getElementById('tuition-ordinary-border'),
+        ordDay: document.getElementById('tuition-ordinary-day'),
+        advBorder: document.getElementById('tuition-advanced-border'),
+        advDay: document.getElementById('tuition-advanced-day')
+      };
+
+      function initTuitionLoader() {
+        const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const tuitionRef = ref(db, 'tuitionFees');
+        onValue(tuitionRef, snapshot => {
+          const data = snapshot.val();
+          if (!data) { return; }
+          tuitionFields.ordBorder.textContent = data.ordinaryBorder || tuitionFields.ordBorder.textContent;
+          tuitionFields.ordDay.textContent = data.ordinaryDay || tuitionFields.ordDay.textContent;
+          tuitionFields.advBorder.textContent = data.advancedBorder || tuitionFields.advBorder.textContent;
+          tuitionFields.advDay.textContent = data.advancedDay || tuitionFields.advDay.textContent;
+        });
+      }
+
+      initTuitionLoader();
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Student Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="Untitled.jpg">
+<style>
+:root{--bg:#0f172a;--card:#0b1220;--text:#e5e7eb;--muted:#94a3b8;--btn:#2563eb;--btnHover:#1e40af;--border:#1f2937}
+.light{--bg:#f1f5f9;--card:#ffffff;--text:#0f172a;--muted:#334155;--btn:#2563eb;--btnHover:#1e40af;--border:#e5e7eb}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text)}
+.wrap{min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:24px}
+.container{width:100%;max-width:860px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.brand{font-weight:700}
+.theme-toggle{cursor:pointer;font-size:14px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 6px 30px rgba(0,0,0,.20);margin-bottom:16px}
+.card .hd{padding:16px 18px;border-bottom:1px solid var(--border);font-weight:600}
+.card .bd{padding:16px 18px}
+.note{font-size:12px;color:var(--muted)}
+img.preview{max-width:100%;border-radius:10px;margin-top:8px}
+.btn{padding:10px 12px;border:none;border-radius:10px;background:var(--btn);color:#fff;cursor:pointer}
+.btn:hover{background:var(--btnHover)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+img.thumb{width:100%;height:110px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}
+.avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;border:2px solid var(--border);margin-right:14px}
+/* Loader */
+.loader{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;z-index:9999}
+.loader .box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 28px;display:flex;align-items:center;gap:14px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.spinner{width:34px;height:34px;border-radius:50%;border:3px solid transparent;border-top-color:var(--btn);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<div id="loader" class="loader"><div class="box"><div class="spinner"></div><div>Loading Student...</div></div></div>
+<div class="wrap">
+  <div class="container">
+    <header>
+      <div class="brand">RLS Student Dashboard</div>
+      <div class="theme-toggle" onclick="toggleTheme()">Theme</div>
+    </header>
+    <div class="card">
+      <div class="hd">My Profile</div>
+      <div class="bd" id="profile">Loading...</div>
+    </div>
+    <div class="card">
+      <div class="hd">Notifications</div>
+      <div class="bd">
+        <div id="notificationStatus" class="note">Checking notification permission...</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="hd">School News</div>
+      <div class="bd" id="newsList"></div>
+    </div>
+    <div class="card">
+      <div class="hd">Upcoming</div>
+      <div class="bd" id="upcomingList"></div>
+    </div>
+    <div class="card">
+      <div class="hd">Gallery</div>
+      <div class="bd"><div id="galleryList" class="grid"></div></div>
+    </div>
+    <div><button class="btn" onclick="logout()">Logout</button></div>
+  </div>
+ </div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+<script src="firebase.js"></script>
+<script>
+auth.onAuthStateChanged(async user=>{
+  if(!user){ location="login.html"; return; }
+  const snap = await db.ref("students/"+user.uid).once("value");
+  if(!snap.exists()){ await auth.signOut(); location="login.html"; return; }
+  const d = snap.val();
+  const pic = d.photoUrl ? `<img class="avatar" src="${d.photoUrl}" alt="${d.name}">` : "";
+  profile.innerHTML = `<div style="display:flex;align-items:center">${pic}<div><b>Name:</b> ${d.name}<br><b>Email:</b> ${d.email}<br><b>Birth Date:</b> ${d.birthDate || ''}<br><b>Class:</b> ${d.class || ''}<br><b>Parents:</b> ${d.parentsName || ''}<br><b>Parents Phone:</b> ${d.parentsPhone || ''}</div></div>`;
+  await initStudent();
+});
+
+function logout(){ auth.signOut().then(()=>location="login.html"); }
+
+async function loadNews(){
+  const snap = await db.ref("news").orderByChild("date").limitToLast(50).once("value");
+  const data = snap.val() || {};
+  const items = Object.entries(data).sort((a,b)=>new Date(a[1].date)-new Date(b[1].date)).reverse().map(([id,n])=>{
+    const img = n.imageUrl ? `<img class="preview" src="${n.imageUrl}" alt="${n.title}">` : "";
+    return `<div style="margin-bottom:14px"><b>${n.title}</b><div class="note">${n.category} • ${new Date(n.date).toLocaleString()}</div><div>${n.content}</div>${img}</div>`;
+  }).join("");
+  newsList.innerHTML = items || `<div class="note">No news yet.</div>`;
+}
+
+async function loadUpcoming(){
+  const snap = await db.ref("upcomingnews").orderByChild("date").limitToLast(50).once("value");
+  const data = snap.val() || {};
+  const items = Object.entries(data).sort((a,b)=>new Date(a[1].date)-new Date(b[1].date)).map(([id,u])=>{
+    return `<div style="margin-bottom:14px"><b>${u.title}</b><div class="note">${u.category} • ${new Date(u.date).toLocaleString()}</div><div>${u.content}</div></div>`;
+  }).join("");
+  upcomingList.innerHTML = items || `<div class="note">No upcoming items.</div>`;
+}
+
+async function loadGallery(){
+  const snap = await db.ref("rlsphotos").orderByChild("date").limitToLast(100).once("value");
+  const data = snap.val() || {};
+  const items = Object.entries(data).sort((a,b)=>new Date(a[1].date)-new Date(b[1].date)).reverse().map(([id,g])=>{
+    const head = g.head || '';
+    const category = g.category || '';
+    const content = g.content ? `<div class=\"note\">${g.content}</div>` : '';
+    return `<div><img class=\"thumb\" src=\"${g.url}\" alt=\"${head}\"><div class=\"note\"><b>${head}</b><br>${category}</div>${content}</div>`;
+  }).join("");
+  galleryList.innerHTML = items || `<div class=\"note\">No gallery images yet.</div>`;
+}
+
+async function initStudent(){
+  showLoading();
+  await Promise.all([loadNews(), loadUpcoming(), loadGallery()]);
+  hideLoading();
+}
+
+function showLoading(){ const el=document.getElementById("loader"); if(el) el.style.display="flex"; }
+function hideLoading(){ const el=document.getElementById("loader"); if(el) el.style.display="none"; }
+
+function toggleTheme(){ const next = document.body.classList.toggle("light"); localStorage.setItem("rls_theme", next?"light":"dark"); }
+document.body.classList.toggle("light", localStorage.getItem("rls_theme") === "light");
+</script>
+
+</body>
+</html>
