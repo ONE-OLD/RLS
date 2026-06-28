@@ -72,25 +72,6 @@ img.thumb{width:100%;height:110px;object-fit:cover;border-radius:10px;border:1px
         </div>
       </div>
       <div class="card">
-        <div class="hd">Tuition & Fees</div>
-        <div class="bd">
-          <div class="row">
-            <div class="field"><div class="label">Ordinary Level (Boarders)</div><input id="tOrdBorder" placeholder="430,000 Rwf"></div>
-            <div class="field"><div class="label">Ordinary Level (Day Scholars)</div><input id="tOrdDay" placeholder="220,000 Rwf"></div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="label">Advanced Level (Boarders)</div><input id="tAdvBorder" placeholder="430,000 Rwf"></div>
-            <div class="field"><div class="label">Advanced Level (Day Scholars)</div><input id="tAdvDay" placeholder="220,000 Rwf"></div>
-          </div>
-          <div class="actions">
-            <button class="btn" onclick="saveTuitionFees()">Save Fees</button>
-            <button class="btn" onclick="loadTuitionFees()">Refresh Fees</button>
-          </div>
-          <div id="tuitionError" class="error" style="display:none"></div>
-          <div class="note">Update the school tuition and fee amounts shown on the public site.</div>
-        </div>
-      </div>
-      <div class="card">
         <div class="hd">Add Student</div>
         <div class="bd">
           <div class="field"><div class="label">Student Name</div><input id="sname" placeholder="Full name"></div>
@@ -152,7 +133,19 @@ img.thumb{width:100%;height:110px;object-fit:cover;border-radius:10px;border:1px
       </div>
 
       <div class="card">
-        <div class="hd">
+        <div class="hd">Post News</div>
+        <div class="bd">
+          <div class="field"><div class="label">Title</div><input id="ntitle" placeholder="Headline"></div>
+          <div class="row">
+            <div class="field"><div class="label">Category</div><input id="ncategory" placeholder="General"></div>
+            <div class="field"><div class="label">Image</div><input id="nimage" type="file" accept="image/*"></div>
+          </div>
+          <div class="field"><div class="label">Content</div><textarea id="ncontent" placeholder="Write news content..."></textarea></div>
+          <div class="actions"><button class="btn" onclick="postNews()">Publish News</button><button class="btn" onclick="loadNews()">Refresh News</button></div>
+          <div id="newsError" class="error" style="display:none"></div>
+          <div id="newsList" class="list"></div>
+        </div>
+      </div>
 
       <div class="card">
         <div class="hd">Post Upcoming</div>
@@ -186,99 +179,6 @@ img.thumb{width:100%;height:110px;object-fit:cover;border-radius:10px;border:1px
           <div id="galleryUploadPreview" class="list"></div>
           <div class="hd" style="margin-top:12px;border-top:1px solid var(--border);padding-top:12px">Gallery</div>
           <div id="galleryList" class="grid"></div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="hd">Upload Past Papers</div>
-        <div class="bd">
-          <div class="note" style="margin-bottom:16px;padding:12px;background:var(--muted);border-radius:8px">Choose one method: Auto-upload (Method 1) OR paste link (Method 2)</div>
-          
-          <div style="border:1px solid var(--border);padding:12px;border-radius:8px;margin-bottom:16px">
-            <b>Method 1: Auto-Upload (Requires API Token)</b>
-          </div>
-          
-          <div class="field"><div class="label">Dropbox Access Token</div><input id="pptoken" type="password" placeholder="sl.u.AGX..."><div class="note">Get from https://www.dropbox.com/developers/apps - expires periodically</div></div>
-          
-          <div class="row">
-            <div class="field"><div class="label">Level</div>
-              <select id="pplevel">
-                <option value="">-- Select Level --</option>
-                <option value="S3">S3</option>
-                <option value="S6">S6</option>
-              </select>
-            </div>
-            <div class="field"><div class="label">Subject</div>
-              <select id="ppsubject">
-                <option value="">-- Select Subject --</option>
-                <option value="Mathematics">Mathematics</option>
-                <option value="Physics">Physics</option>
-                <option value="Biology">Biology</option>
-                <option value="Economics">Economics</option>
-                <option value="French">French</option>
-                <option value="Kinyarwanda">Kinyarwanda</option>
-                <option value="English">English</option>
-                <option value="History">History</option>
-                <option value="Geography">Geography</option>
-                <option value="Chemistry">Chemistry</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Literature">Literature</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="field"><div class="label">Year</div><input id="ppyear" type="number" min="2005" placeholder="e.g., 2024"></div>
-            <div class="field"><div class="label">PDF File</div><input id="ppfile" type="file" accept="application/pdf"></div>
-          </div>
-          <div class="field"><div class="label">Description (Optional)</div><textarea id="ppdesc" placeholder="Add any notes or details about this paper..."></textarea></div>
-          <div class="actions">
-            <button class="btn" onclick="uploadPastPaper()">Method 1: Auto-Upload</button>
-          </div>
-          
-          <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px">
-            <div style="border:1px solid var(--border);padding:12px;border-radius:8px;margin-bottom:16px">
-              <b>Method 2: Paste Dropbox Link (No API Token Needed)</b>
-            </div>
-            
-            <div class="row">
-              <div class="field"><div class="label">Level</div>
-                <select id="ppmanual_level">
-                  <option value="">-- Select Level --</option>
-                  <option value="S3">S3</option>
-                  <option value="S6">S6</option>
-                </select>
-              </div>
-              <div class="field"><div class="label">Subject</div>
-                <select id="ppmanual_subject">
-                  <option value="">-- Select Subject --</option>
-                  <option value="Mathematics">Mathematics</option>
-                  <option value="Physics">Physics</option>
-                  <option value="Biology">Biology</option>
-                  <option value="Economics">Economics</option>
-                  <option value="French">French</option>
-                  <option value="Kinyarwanda">Kinyarwanda</option>
-                  <option value="English">English</option>
-                  <option value="History">History</option>
-                  <option value="Geography">Geography</option>
-                  <option value="Chemistry">Chemistry</option>
-                  <option value="Computer Science">Computer Science</option>
-                  <option value="Literature">Literature</option>
-                </select>
-              </div>
-            </div>
-            <div class="row">
-              <div class="field"><div class="label">Year</div><input id="ppmanual_year" type="number" min="2005" placeholder="e.g., 2024"></div>
-              <div class="field"><div class="label">Dropbox Link</div><input id="ppmanual_link" placeholder="https://www.dropbox.com/s/...?dl=1"></div>
-            </div>
-            <div class="field"><div class="label">Description (Optional)</div><textarea id="ppmanual_desc" placeholder="Add any notes or details about this paper..."></textarea></div>
-            <div class="actions">
-              <button class="btn" onclick="uploadPastPaperManual()">Method 2: Save Link</button>
-            </div>
-          </div>
-          
-          <div id="pastpaperError" class="error" style="display:none;margin-top:12px"></div>
-          <div class="actions" style="margin-top:16px"><button class="btn" onclick="loadPastPapers()">Refresh List</button></div>
-          <div id="pastpaperList" class="list"></div>
         </div>
       </div>
 
@@ -335,10 +235,6 @@ async function addAdmin(){
   }catch(e){ show("adminError", e.message); }
 }
 
-async function notifyUsers(title, message) {
-  return;
-}
-
 async function postNews(){
   hide("newsError");
   const title = ntitle.value.trim();
@@ -354,58 +250,64 @@ async function postNews(){
       await ref.put(file);
       imageUrl = await ref.getDownloadURL();
     }
-    await db.ref("news").push({ title, category, content, imageUrl, date: new Date().toISOString() });
+    const newsRef = await db.ref("news").push({ title, category, content, imageUrl, date: new Date().toISOString() });
     ntitle.value=""; ncategory.value=""; ncontent.value=""; nimage.value="";
     await loadNews();
   }catch(e){ show("newsError", e.message); }
+}
+
+function logout(){ auth.signOut().then(()=>location="login.html"); }
+
+async function listStudents(){
+  const snap = await db.ref("students").orderByChild("name").limitToFirst(200).once("value");
+  studentsCache = snap.val() || {};
+  bindStudentSearch();
+  const q = document.getElementById("ssearch")?.value?.trim() || "";
+  renderStudents(q);
+}
+
+async function listAdmins(){
+  const snap = await db.ref("admins").once("value");
+  const list = document.getElementById("admins");
+  const data = snap.val() || {};
+  list.innerHTML = Object.entries(data).map(([id,a])=>`<div class="item"><h4>${a.email}</h4><div class="note">Admin</div><div class="actions" style="margin-top:8px"><button class="btn" onclick="deleteAdmin('${id}')">Delete Admin</button></div></div>`).join("") || `<div class="note">No admins yet.</div>`;
+}
+
+async function loadNews(){
+  const snap = await db.ref("news").orderByChild("date").limitToLast(50).once("value");
+  const data = snap.val() || {};
+  const list = document.getElementById("newsList");
+  const items = Object.entries(data).sort((a,b)=>new Date(a[1].date)-new Date(b[1].date)).reverse().map(([id,n])=>{
+    const img = n.imageUrl ? `<img class="preview" src="${n.imageUrl}" alt="${n.title}">` : "";
+    return `<div class="item"><h4>${n.title}</h4><div class="note">${n.category} • ${new Date(n.date).toLocaleString()}</div><div>${n.content}</div>${img}<div class="actions" style="margin-top:8px"><button class="btn" onclick="deleteNews('${id}')">Delete News</button></div></div>`;
+  }).join("");
+  list.innerHTML = items || `<div class="note">No news posted.</div>`;
+}
+
+async function postUpcoming(){
+  hide("upcomingError");
+  const title = utitle.value.trim();
+  const category = ucategory.value.trim();
+  const content = ucontent.value.trim();
+  const dateStr = udate.value.trim();
+  if(!title || !category || !content || !dateStr){ return show("upcomingError","Fill all fields."); }
+  const date = new Date(dateStr);
+  if(isNaN(date.getTime())){ return show("upcomingError","Invalid date."); }
+  try{
+    await db.ref("upcomingnews").push({ title, category, content, date: date.toISOString() });
+    utitle.value=""; ucategory.value=""; ucontent.value=""; udate.value="";
+    await loadUpcoming();
+  }catch(e){ show("upcomingError", e.message); }
 }
 
 async function loadUpcoming(){
   const snap = await db.ref("upcomingnews").orderByChild("date").limitToLast(50).once("value");
   const data = snap.val() || {};
   const list = document.getElementById("upcomingList");
-  const items = Object.entries(data).sort((a,b)=>new Date(a[1].date)-new Date(b[1].date)).reverse().map(([id,u])=>{
+  const items = Object.entries(data).sort((a,b)=>new Date(a[1].date)-new Date(b[1].date)).map(([id,u])=>{
     return `<div class="item"><h4>${u.title}</h4><div class="note">${u.category} • ${new Date(u.date).toLocaleString()}</div><div>${u.content}</div><div class="actions" style="margin-top:8px"><button class="btn" onclick="deleteUpcoming('${id}')">Delete Upcoming</button></div></div>`;
   }).join("");
   list.innerHTML = items || `<div class="note">No upcoming items.</div>`;
-}
-
-async function loadTuitionFees(){
-  try{
-    const snap = await db.ref("tuitionFees").once("value");
-    const data = snap.val();
-    if(!data){ return; }
-    tOrdBorder.value = data.ordinaryBorder || "";
-    tOrdDay.value = data.ordinaryDay || "";
-    tAdvBorder.value = data.advancedBorder || "";
-    tAdvDay.value = data.advancedDay || "";
-  }catch(e){ console.warn("Tuition fees load failed:", e); }
-}
-
-async function saveTuitionFees(){
-  hide("tuitionError");
-  const ordinaryBorder = tOrdBorder.value.trim();
-  const ordinaryDay = tOrdDay.value.trim();
-  const advancedBorder = tAdvBorder.value.trim();
-  const advancedDay = tAdvDay.value.trim();
-  if(!ordinaryBorder || !ordinaryDay || !advancedBorder || !advancedDay){ return show("tuitionError","Fill all fee fields before saving."); }
-  try{
-    await db.ref("tuitionFees").set({
-      ordinaryBorder,
-      ordinaryDay,
-      advancedBorder,
-      advancedDay,
-      updatedAt: Date.now()
-    });
-    const tuitionMsg = document.getElementById("tuitionError");
-    tuitionMsg.textContent = "Tuition fees updated successfully.";
-    tuitionMsg.style.color = "#16a34a";
-    tuitionMsg.style.display = "block";
-  }catch(e){
-    const tuitionMsg = document.getElementById("tuitionError");
-    tuitionMsg.style.color = "#ef4444";
-    show("tuitionError", e.message);
-  }
 }
 
 function toggleTheme(){ const next = document.body.classList.toggle("light"); localStorage.setItem("rls_theme", next?"light":"dark"); }
@@ -455,7 +357,7 @@ function renderStudents(q){
 
 async function initAdmin(){
   showLoading();
-  await Promise.all([listAdmins(), listStudents(), loadNews(), loadUpcoming(), loadGallery(), loadPastPapers(), loadTuitionFees()]);
+  await Promise.all([listAdmins(), listStudents(), loadNews(), loadUpcoming(), loadGallery()]);
   hideLoading();
 }
 
@@ -541,289 +443,6 @@ async function deletePhoto(id){
     await ref.remove();
     await loadGallery();
   }catch(e){ showGalleryError(e.message); }
-}
-
-// ===== PAST PAPERS MANAGEMENT =====
-async function uploadPastPaper(){
-  const errorEl = document.getElementById("pastpaperError");
-  errorEl.style.display = "none";
-  
-  // Check if token is provided
-  const token = document.getElementById("pptoken").value.trim();
-  if(!token){
-    errorEl.textContent = "❌ Dropbox access token is required. Paste your token from https://www.dropbox.com/developers/apps";
-    errorEl.style.display = "block";
-    return;
-  }
-  
-  const level = document.getElementById("pplevel").value.trim();
-  const subject = document.getElementById("ppsubject").value.trim();
-  const year = document.getElementById("ppyear").value.trim();
-  const file = document.getElementById("ppfile").files[0];
-  const desc = document.getElementById("ppdesc").value.trim();
-  
-  if(!level || !subject || !year || !file){
-    errorEl.textContent = "Level, Subject, Year, and PDF file are required.";
-    errorEl.style.display = "block";
-    return;
-  }
-  
-  if(!file.type || !file.type.includes("pdf")){
-    errorEl.textContent = "Please upload a PDF file only.";
-    errorEl.style.display = "block";
-    return;
-  }
-  
-  try{
-    const yearNum = parseInt(year);
-    if(isNaN(yearNum) || yearNum < 2005 || yearNum > new Date().getFullYear()){
-      errorEl.textContent = "Year must be between 2005 and " + new Date().getFullYear();
-      errorEl.style.display = "block";
-      return;
-    }
-    
-    errorEl.textContent = "⏳ Uploading to Dropbox...";
-    errorEl.style.display = "block";
-    errorEl.style.color = "#2563eb";
-    
-    // Read file as base64
-    const base64 = await fileToBase64(file);
-    const arrayBuffer = await file.arrayBuffer();
-    
-    // Upload to Dropbox
-    const fileName = `${yearNum}_${Date.now()}`.replace(/\s+/g, '_');
-    const dropboxPath = `/RLS_Past_Papers/${level}/${subject}/${fileName}.pdf`;
-    
-    const uploadResponse = await fetch("https://content.dropboxapi.com/2/files/upload", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Dropbox-API-Arg": JSON.stringify({
-          path: dropboxPath,
-          mode: "add",
-          autorename: true,
-          mute: false
-        }),
-        "Content-Type": "application/octet-stream"
-      },
-      body: arrayBuffer
-    });
-    
-    // Check response status first
-    if(!uploadResponse.ok){
-      const contentType = uploadResponse.headers.get("content-type");
-      let errorMsg = `Upload failed (${uploadResponse.status})`;
-      
-      if(contentType && contentType.includes("application/json")){
-        try{
-          const err = await uploadResponse.json();
-          errorMsg = err.error_summary || err.error || errorMsg;
-        }catch(_){}
-      } else {
-        const text = await uploadResponse.text();
-        errorMsg = text.substring(0, 200) || errorMsg;
-      }
-      
-      throw new Error(errorMsg);
-    }
-    
-    let uploadData;
-    try{
-      uploadData = await uploadResponse.json();
-    }catch(e){
-      throw new Error("Invalid response from Dropbox");
-    }
-    
-    errorEl.textContent = "⏳ Generating shareable link...";
-    
-    // Create shareable link
-    const linkResponse = await fetch("https://api.dropboxapi.com/2/sharing/create_shared_link_with_settings", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        path: uploadData.path_lower,
-        settings: {
-          requested_visibility: "public",
-          audience: "public",
-          access: "viewer"
-        }
-      })
-    });
-    
-    let shareLink = null;
-    
-    if(linkResponse.ok){
-      const linkData = await linkResponse.json();
-      shareLink = linkData.url.replace("?dl=0", "?dl=1");
-    } else {
-      // If link already exists, fetch it
-      const existingResponse = await fetch("https://api.dropboxapi.com/2/sharing/list_shared_links", {
-        method: "POST",
-        headers: {
-          "Authorization": `Bearer ${token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          path: uploadData.path_lower,
-          direct_only: true
-        })
-      });
-      
-      if(existingResponse.ok){
-        const existingData = await existingResponse.json();
-        if(existingData.links && existingData.links.length > 0){
-          shareLink = existingData.links[0].url.replace("?dl=0", "?dl=1");
-        }
-      }
-    }
-    
-    if(!shareLink){
-      throw new Error("Could not generate Dropbox link. Check token permissions: files.content.write, sharing.write");
-    }
-    
-    // Save to Firebase
-    await db.ref("pastpapers").push({
-      level,
-      subject,
-      year: yearNum,
-      link: shareLink,
-      description: desc,
-      uploadedBy: auth.currentUser.uid,
-      createdAt: new Date().toISOString()
-    });
-    
-    document.getElementById("pplevel").value = "";
-    document.getElementById("ppsubject").value = "";
-    document.getElementById("ppyear").value = "";
-    document.getElementById("ppfile").value = "";
-    document.getElementById("ppdesc").value = "";
-    
-    errorEl.textContent = "✅ Paper uploaded to Dropbox and saved!";
-    errorEl.style.color = "#16a34a";
-    
-    await loadPastPapers();
-  }catch(e){
-    console.error("Upload error:", e);
-    errorEl.textContent = "❌ Error: " + e.message;
-    errorEl.style.color = "#ef4444";
-    errorEl.style.display = "block";
-  }
-}
-
-async function fileToBase64(file){
-  return new Promise((resolve,reject)=>{
-    const reader = new FileReader();
-    reader.onload = () => {
-      const result = reader.result;
-      const base64 = String(result).split(",")[1];
-      resolve(base64);
-    };
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
-
-async function uploadPastPaperManual(){
-  const errorEl = document.getElementById("pastpaperError");
-  errorEl.style.display = "none";
-  
-  const level = document.getElementById("ppmanual_level").value.trim();
-  const subject = document.getElementById("ppmanual_subject").value.trim();
-  const year = document.getElementById("ppmanual_year").value.trim();
-  const link = document.getElementById("ppmanual_link").value.trim();
-  const desc = document.getElementById("ppmanual_desc").value.trim();
-  
-  if(!level || !subject || !year || !link){
-    errorEl.textContent = "Level, Subject, Year, and Dropbox link are required.";
-    errorEl.style.display = "block";
-    return;
-  }
-  
-  if(!link.includes("dropbox.com")){
-    errorEl.textContent = "Please provide a valid Dropbox link (must contain dropbox.com)";
-    errorEl.style.display = "block";
-    return;
-  }
-  
-  try{
-    const yearNum = parseInt(year);
-    if(isNaN(yearNum) || yearNum < 2005 || yearNum > new Date().getFullYear()){
-      errorEl.textContent = "Year must be between 2005 and " + new Date().getFullYear();
-      errorEl.style.display = "block";
-      return;
-    }
-    
-    // Ensure link has ?dl=1 for direct download
-    let finalLink = link;
-    if(!finalLink.includes("?dl=1") && !finalLink.includes("?dl=0")){
-      finalLink = link.includes("?") ? link + "&dl=1" : link + "?dl=1";
-    } else {
-      finalLink = link.replace("?dl=0", "?dl=1");
-    }
-    
-    // Save to Firebase
-    await db.ref("pastpapers").push({
-      level,
-      subject,
-      year: yearNum,
-      link: finalLink,
-      description: desc,
-      uploadedBy: auth.currentUser.uid,
-      createdAt: new Date().toISOString()
-    });
-    
-    document.getElementById("ppmanual_level").value = "";
-    document.getElementById("ppmanual_subject").value = "";
-    document.getElementById("ppmanual_year").value = "";
-    document.getElementById("ppmanual_link").value = "";
-    document.getElementById("ppmanual_desc").value = "";
-    
-    errorEl.textContent = "✅ Paper link saved successfully!";
-    errorEl.style.color = "#16a34a";
-    errorEl.style.display = "block";
-    
-    await loadPastPapers();
-  }catch(e){
-    console.error("Upload error:", e);
-    errorEl.textContent = "❌ Error: " + e.message;
-    errorEl.style.color = "#ef4444";
-    errorEl.style.display = "block";
-  }
-}
-
-async function loadPastPapers(){
-  const snap = await db.ref("pastpapers").once("value");
-  const data = snap.val() || {};
-  const list = document.getElementById("pastpaperList");
-  
-  const items = Object.entries(data)
-    .sort((a,b) => new Date(b[1].createdAt) - new Date(a[1].createdAt))
-    .map(([id, pp]) => {
-      const desc = pp.description ? `<div class="note">${pp.description}</div>` : '';
-      return `<div class="item">
-        <h4>${pp.level} • ${pp.subject} (${pp.year})</h4>
-        <div class="note">${new Date(pp.createdAt).toLocaleDateString()}</div>
-        ${desc}
-        <div style="margin-top:8px"><a href="${pp.link}" target="_blank" style="color:var(--btn);text-decoration:none;font-size:13px">📄 View on Dropbox</a></div>
-        <div class="actions" style="margin-top:8px"><button class="btn" onclick="deletePastPaper('${id}')">Delete Paper</button></div>
-      </div>`;
-    }).join("");
-  
-  list.innerHTML = items || `<div class="note">No past papers uploaded yet.</div>`;
-}
-
-async function deletePastPaper(id){
-  if(confirm("Delete this past paper from Firebase? (File remains on Dropbox)")){
-    try{
-      await db.ref("pastpapers/"+id).remove();
-      await loadPastPapers();
-    }catch(e){
-      alert("Error: " + e.message);
-    }
-  }
 }
 </script>
 
