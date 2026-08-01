@@ -277,6 +277,8 @@ function initializeContactForm() {
     const contactForm = document.getElementById('contact-form');
     const admissionsForm = document.getElementById('admissions-form');
     const newsletterForm = document.getElementById('newsletter-form');
+    const footerSubscribeForm = document.getElementById('footer-subscribe-form');
+    const footerOnesignalButton = document.getElementById('footer-onesignal-subscribe');
     
     if (contactForm) {
         contactForm.addEventListener('submit', handleContactFormSubmit);
@@ -288,6 +290,93 @@ function initializeContactForm() {
     
     if (newsletterForm) {
         newsletterForm.addEventListener('submit', handleNewsletterFormSubmit);
+    }
+
+    if (footerSubscribeForm) {
+        footerSubscribeForm.addEventListener('submit', handleFooterSubscribeSubmit);
+    }
+
+    if (footerOnesignalButton) {
+        footerOnesignalButton.addEventListener('click', handleFooterOneSignalSubscribe);
+    }
+}
+
+function handleFooterSubscribeSubmit(event) {
+    event.preventDefault();
+    const emailInput = document.getElementById('footer-subscribe-email');
+    const status = document.getElementById('footer-subscribe-status');
+    const email = emailInput?.value.trim();
+
+    if (!email) {
+        if (status) {
+            status.textContent = 'Please enter an email address.';
+            status.style.color = '#f9c74f';
+        }
+        return;
+    }
+
+    if (status) {
+        status.textContent = 'Thank you for subscribing!';
+        status.style.color = '#8fd14f';
+    }
+
+    if (emailInput) {
+        emailInput.value = '';
+    }
+
+    showNotification('You are subscribed for school updates.');
+}
+
+async function handleFooterOneSignalSubscribe() {
+    const status = document.getElementById('footer-subscribe-status');
+    const button = document.getElementById('footer-onesignal-subscribe');
+
+    if (!window.OneSignalDeferred) {
+        if (status) {
+            status.textContent = 'Push notifications are not available yet.';
+            status.style.color = '#f9c74f';
+        }
+        return;
+    }
+
+    if (button) {
+        button.disabled = true;
+        button.textContent = 'Subscribing...';
+    }
+
+    try {
+        const result = await new Promise((resolve) => {
+            window.OneSignalDeferred.push(function(OneSignal) {
+                OneSignal.showSlidedownPrompt().then(() => {
+                    OneSignal.isPushNotificationsEnabled().then((enabled) => {
+                        resolve(enabled);
+                    });
+                }).catch(() => resolve(false));
+            });
+        });
+
+        if (result) {
+            if (status) {
+                status.textContent = 'Push alerts enabled.';
+                status.style.color = '#8fd14f';
+            }
+            showNotification('Push alerts enabled.');
+        } else {
+            if (status) {
+                status.textContent = 'Push permission was not granted.';
+                status.style.color = '#f9c74f';
+            }
+        }
+    } catch (error) {
+        if (status) {
+            status.textContent = 'Unable to enable push alerts.';
+            status.style.color = '#f9c74f';
+        }
+    } finally {
+        if (button) {
+            button.disabled = false;
+            button.textContent = 'Enable push alerts';
+        }
     }
 }
 

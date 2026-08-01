@@ -1621,6 +1621,44 @@ main {
     margin-bottom: 0.5rem;
 }
 
+.footer-subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.footer-subscribe-form input {
+    padding: 0.7rem 0.85rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.9);
+    color: #111827;
+}
+
+.footer-subscribe-form button,
+.footer-onesignal-btn {
+    padding: 0.7rem 0.9rem;
+    border: none;
+    border-radius: 0.5rem;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.footer-onesignal-btn {
+    width: 100%;
+    background: #2563eb;
+    margin-bottom: 0.4rem;
+}
+
+.footer-subscribe-status {
+    font-size: 0.8rem;
+    min-height: 1.2rem;
+    color: var(--muted-foreground);
+}
+
 .footer-separator {
     height: 1px;
     background-color: var(--border);
