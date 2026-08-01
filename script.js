@@ -331,31 +331,40 @@ async function handleFooterOneSignalSubscribe() {
     const status = document.getElementById('footer-subscribe-status');
     const button = document.getElementById('footer-onesignal-subscribe');
 
-    if (!window.OneSignalDeferred) {
-        if (status) {
-            status.textContent = 'Push notifications are not available yet.';
-            status.style.color = '#f9c74f';
-        }
-        return;
-    }
-
     if (button) {
         button.disabled = true;
         button.textContent = 'Subscribing...';
     }
 
     try {
-        const result = await new Promise((resolve) => {
-            window.OneSignalDeferred.push(function(OneSignal) {
-                OneSignal.showSlidedownPrompt().then(() => {
-                    OneSignal.isPushNotificationsEnabled().then((enabled) => {
-                        resolve(enabled);
-                    });
-                }).catch(() => resolve(false));
+        const OneSignal = await new Promise((resolve, reject) => {
+            if (window.OneSignal) {
+                resolve(window.OneSignal);
+                return;
+            }
+
+            const timeout = setTimeout(() => reject(new Error('OneSignal timed out.')), 6000);
+            window.OneSignalDeferred = window.OneSignalDeferred || [];
+            window.OneSignalDeferred.push(function(instance) {
+                clearTimeout(timeout);
+                resolve(instance);
             });
         });
 
-        if (result) {
+        let subscribed = false;
+
+        if (typeof OneSignal.Notifications?.requestPermission === 'function') {
+            await OneSignal.Notifications.requestPermission();
+            subscribed = Notification.permission === 'granted';
+        } else if (typeof OneSignal.User?.PushSubscription?.optIn === 'function') {
+            await OneSignal.User.PushSubscription.optIn();
+            subscribed = true;
+        } else if (typeof OneSignal.showSlidedownPrompt === 'function') {
+            await OneSignal.showSlidedownPrompt();
+            subscribed = Notification.permission === 'granted';
+        }
+
+        if (subscribed) {
             if (status) {
                 status.textContent = 'Push alerts enabled.';
                 status.style.color = '#8fd14f';
@@ -368,6 +377,7 @@ async function handleFooterOneSignalSubscribe() {
             }
         }
     } catch (error) {
+        console.error('OneSignal subscription failed:', error);
         if (status) {
             status.textContent = 'Unable to enable push alerts.';
             status.style.color = '#f9c74f';
