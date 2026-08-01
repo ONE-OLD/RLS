@@ -833,3 +833,111 @@ function hidePreloader() {
 }
 
 window.addEventListener('load', () => setTimeout(hidePreloader, 3000));
+document.addEventListener("DOMContentLoaded", () => {
+  const contextMenu = document.getElementById("custom-context-menu");
+  const btnCopy = document.getElementById("menu-copy");
+  const btnRefresh = document.getElementById("menu-refresh");
+  const btnExit = document.getElementById("menu-exit");
+  
+
+  if (!contextMenu) return;
+
+  // Variable to temporarily store selected text before it gets deselected
+  let textToCopy = "";
+
+  // 1. Show context menu and capture selected text
+  document.addEventListener("contextmenu", (event) => {
+    event.preventDefault();
+
+    // CAPTURE SELECTED TEXT:
+    const activeElement = document.activeElement;
+    
+    // Check if right-clicking inside an input/textarea
+    if (
+      activeElement && 
+      (activeElement.tagName === "INPUT" || activeElement.tagName === "TEXTAREA")
+    ) {
+      const start = activeElement.selectionStart;
+      const end = activeElement.selectionEnd;
+      textToCopy = activeElement.value.substring(start, end);
+    } else {
+      // Normal highlighted text on the page
+      textToCopy = window.getSelection().toString();
+    }
+
+    // Show menu first to compute true size
+    contextMenu.style.display = "block";
+
+    let mouseX = event.clientX;
+    let mouseY = event.clientY;
+
+    const menuWidth = contextMenu.offsetWidth;
+    const menuHeight = contextMenu.offsetHeight;
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+
+    // Boundary checks
+    if (mouseX + menuWidth > windowWidth) {
+      mouseX = windowWidth - menuWidth - 5;
+    }
+    if (mouseY + menuHeight > windowHeight) {
+      mouseY = windowHeight - menuHeight - 5;
+    }
+
+    contextMenu.style.left = `${mouseX}px`;
+    contextMenu.style.top = `${mouseY}px`;
+  });
+
+  // 2. Hide context menu on left click
+  document.addEventListener("click", () => {
+    contextMenu.style.display = "none";
+  });
+
+  // --- ACTIONS ---
+
+  // COPY ACTION
+  btnCopy?.addEventListener("click", async () => {
+    contextMenu.style.display = "none";
+
+    // Clean text string
+    const trimmedText = textToCopy.trim();
+
+    if (trimmedText) {
+      try {
+        await navigator.clipboard.writeText(trimmedText);
+        console.log("Copied to clipboard:", trimmedText);
+      } catch (err) {
+        // Fallback for older browsers or restricted security contexts
+        const textarea = document.createElement("textarea");
+        textarea.value = trimmedText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+    } else {
+      alert("No text highlighted to copy!");
+    }
+  });
+
+  // REFRESH ACTION
+  btnRefresh?.addEventListener("click", () => {
+    window.location.reload();
+  });
+
+  // EXIT PAGE ACTION
+  btnExit?.addEventListener("click", () => {
+    window.close();
+    setTimeout(() => {
+      window.location.href = "https://www.google.com";
+    }, 100);
+  });
+});
+document.addEventListener("keydown", (event) => {
+  // Check if the pressed key is F1 through F12
+  if (event.key >= "F1" && event.key <= "F12") {
+    event.preventDefault(); // Block standard browser functions (Help, DevTools, Refresh, etc.)
+    event.stopPropagation();
+    console.log(`Blocked key: ${event.key}`);
+  }
+});

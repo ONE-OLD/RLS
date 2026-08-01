@@ -15,6 +15,23 @@
 <meta property="og:url" content="https://rls.ac.rw">
 <meta property="og:type" content="website">
 <script id="chatway" async="true" src="https://cdn.chatway.app/widget.js?id=UrWkM7ZpaM1Z"></script>
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(function(OneSignal) {
+        OneSignal.init({
+            appId: "de9afd09-6dfb-4299-abd9-761671383942",
+            allowLocalhostAsSecureOrigin: true,
+            autoResubscribe: true,
+            notifyButton: {
+                enable: true,
+                size: "medium",
+                prenotify: true,
+                showCredit: false
+            }
+        });
+    });
+</script>
 <!-- Structured Data for Google -->
 <script type="application/ld+json">
 
@@ -48,139 +65,6 @@
     <title>Rwamagana Leaders' School</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Our Story Section Styles */
-        .our-story-section {
-            margin-top: 50px;
-        }
-        
-        .story-intro {
-            font-size: 1.1rem;
-            color: var(--muted-foreground);
-            text-align: center;
-            margin-bottom: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: var(--primary);
-        }
-        
-        .timeline-item {
-            display: flex;
-            margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .timeline-item.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        .timeline-marker {
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-foreground);
-            font-size: 1.2rem;
-            margin-right: 20px;
-            flex-shrink: 0;
-            z-index: 1;
-            position: relative;
-        }
-        
-        .timeline-content {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 8px var(--shadow);
-            flex: 1;
-        }
-        
-        .timeline-content h4 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--foreground);
-            margin-bottom: 10px;
-        }
-        
-        .timeline-content p {
-            color: var(--muted-foreground);
-            line-height: 1.6;
-        }
-        
-        .story-cta {
-            text-align: center;
-            margin-top: 50px;
-            padding: 30px;
-            background: var(--accent);
-            border-radius: 12px;
-        }
-        
-        .story-cta p {
-            font-size: 1.1rem;
-            color: var(--foreground);
-            margin-bottom: 20px;
-        }
-        
-        .cta-btn {
-            background: var(--primary);
-            color: var(--primary-foreground);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        
-        .cta-btn:hover {
-            background: var(--primary-hover, var(--primary));
-            opacity: 0.9;
-        }
-        
-        @media (max-width: 768px) {
-            .timeline::before {
-                left: 20px;
-            }
-            
-            .timeline-marker {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
-                margin-right: 15px;
-            }
-            
-            .timeline-content {
-                padding: 15px;
-            }
-            
-            .timeline-content h4 {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
     <!-- EmailJS CDN -->
      <script>
         const firebaseConfig = {
@@ -548,7 +432,7 @@
                 </a>
 
                 <a class="partner-card" href="https://rwandaschoolproject.org" target="_blank" rel="noopener" title="Rwanda School Project">
-                    <img src="https://rwandaschoolproject.org/wp-content/uploads/2021/12/cropped-rwanda-school-project.png" alt="Rwanda School Project logo">
+                    <img src="image/RSP - logo.png" alt="Rwanda School Project logo">
                     <div class="partner-name">Rwanda School Project</div>
                 </a>
 
@@ -558,7 +442,7 @@
                 </a>
 
                 <a class="partner-card" href="https://www.segalfamilyfoundation.org/" target="_blank" rel="noopener" title="Segal Family Foundation">
-                    <img src="https://rwandaschoolproject.org/wp-content/uploads/2014/08/SFF-logo.png" alt="Segal Family Foundation logo">
+                    <img src="image/SFF - logo.png" alt="Segal Family Foundation logo">
                     <div class="partner-name">Segal Family Foundation</div>
                 </a>
 
@@ -591,7 +475,7 @@
                                 <div class="timeline-marker"><i class="fa-solid fa-seedling"></i></div>
                                 <div class="timeline-content">
                                     <h4>Beginning (2005)</h4>
-                                    <p>Idea of the school begins after discussions with Rwandan educators following the 1994 Genocide.</p>
+                                    <p>Idea of the school begins after discussions with Rwandan educators following the 2005 Genocide.</p>
                                 </div>
                             </div>
                             
@@ -794,120 +678,46 @@
                 <div class="mb-20">
                     <h2>Our Programs</h2>
                     <div class="programs-grid">
-                        <div class="program-card card-hover">
+                                                <div class="program-card card-hover">
                             <div class="program-icon">
                             </div>
-                            <h3>MPC</h3>
-                            <div class="program-badge">Science combination</div>
-                            <p>Mathematics Physics and Computer Science</p>
+                            <h3>Stream 1</h3>
+                            <div class="program-badge">Mathematics and Sciences (Pure Sciences)</div>
+                            <p>MCB, PCB, PCM</p>
                             <div class="program-highlights">
-                                <span>Technologies</span>
-                                <span>Integrand</span>
-                                <span>Projectile Motion</span>
-                                <span>Computer Science</span>
-                            </div>
-                        </div>
-
-                        <div class="program-card card-hover">
-                            <div class="program-icon">
-                            </div>
-                            <h3>PCM</h3>
-                            <div class="program-badge">Science combination</div>
-                            <p>Mathematics Physics and Chemistry</p>
-                            <div class="program-highlights">
-                                <span>Lenses</span>
+                                <span>Algorithms</span>
+                                <span>Statistics</span>
                                 <span>Atoms</span>
-                                <span>Derivatives</span>
-                                <span>Statistics</span>
-                                <span>Problem Solving</span>
+                                <span>Respiration</span>
                             </div>
                         </div>
-
                         <div class="program-card card-hover">
                             <div class="program-icon">
                             </div>
-                            <h3>MPG</h3>
-                            <div class="program-badge">Science Combination</div>
-                            <p>Mathematics, Physics and Geography</p>
+                            <h3>Stream 2</h3>
+                            <div class="program-badge">Mathematics and Sciences (Applied Sciences)</div>
+                            <p>MEG, MCE, MPC, MPG</p>
                             <div class="program-highlights">
-                                <span>Earth</span>
-                                <span>Algorithms</span>
-                                <span>Volcanoes</span>
-                                <span>Telescopes</span>
+                                <span>Probability</span>
+                                <span>Optical Fiber</span>
+                                <span>Economic</span>
+                                <span>C++</span>
                             </div>
                         </div>
-
                         <div class="program-card card-hover">
                             <div class="program-icon">
                             </div>
-                            <h3>HGL</h3>
-                            <div class="program-badge">Arts Combination</div>
-                            <p>History, Geography, and Literature</p>
+                            <h3>Arts and Humanities</h3>
+                            <div class="program-badge">Arts & Humanities</div>
+                            <p>HGLE, HLP</p>
                             <div class="program-highlights">
-                                <span>Genocide</span>
-                                <span>Atmosphere</span>
-                                <span>Human Rights</span>
-                                <span>Readings</span>
-                            </div>
-                        </div>
-
-                        <div class="program-card card-hover">
-                            <div class="program-icon">
-                            </div>
-                            <h3>MEC</h3>
-                            <div class="program-badge">Science Combination</div>
-                            <p>Mathematics, Economics and Computer Science</p>
-                            <div class="program-highlights">
-                                <span>Algorithms</span>
-                                <span>Statistics</span>
-                                <span>Programming</span>
-                                <span>Funds</span>
-                                <span>Business</span>
-                            </div>
-                        </div>
-
-                        <div class="program-card card-hover">
-                            <div class="program-icon">
-                            </div>
-                            <h3>MEG</h3>
-                            <div class="program-badge">Arts Combination</div>
-                            <p>Mathematics, Economics and Geography</p>
-                            <div class="program-highlights">
-                                <span>Algorithms</span>
-                                <span>Statistics</span>
-                                <span>Programming</span>
-                                <span>Funds</span>
-                                <span>Business</span>
-                            </div>
-                        </div>
-
-                        <div class="program-card card-hover">
-                            <div class="program-icon">
-                            </div>
-                            <h3>PCB</h3>
-                            <div class="program-badge">Science Combination</div>
-                            <p>Physics, Chemistry and Biology</p>
-                            <div class="program-highlights">
-                                <span>Atoms</span>
-                                <span>Molecules</span>
-                                <span>Fiction</span>
-                                <span>Expression</span>
-                            </div>
-                        </div>
-
-                        <div class="program-card card-hover">
-                            <div class="program-icon">
-                            </div>
-                            <h3>MCB</h3>
-                            <div class="program-badge">Science Combination</div>
-                            <p>Mathematics, Chemistry and Biology</p>
-                            <div class="program-highlights">
-                                <span>Algorithms</span>
-                                <span>Statistics</span>
-                                <span>Culture</span>
+                                <span>II World War</span>
+                                <span>Faults</span>
+                                <span>Civilisation</span>
                                 <span>Change</span>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -1185,7 +995,7 @@
                             </div>
                         </div>
 
-                        <div class="contact-item">
+                        <div class="contact-item" onclick="window.open('tel:+250788123406')" target="_blank" style="cursor: pointer;">
                             <div class="contact-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.40 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.40 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
@@ -1194,7 +1004,7 @@
                             <p>+250 788 123 406</p>
                         </div>
 
-                        <div class="contact-item">
+                        <div class="contact-item" onclick="window.open('mailto:info@rls.ac.rw')" target="_blank" style="cursor: pointer;">
                             <div class="contact-icon">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
@@ -1320,7 +1130,7 @@
                                 </svg>
                             </div>
                             <h3>Receive Decision</h3>
-                            <p>Get your admission decision within 7-10 business days</p>
+                            <p>Get your admission decision within 1-2 business days with a <b>registration fees.</b></p>
                         </div>
                     </div>
                 </div>
@@ -1609,7 +1419,6 @@
                     <div class="lightbox-content">
                         <span class="lightbox-close" style="background-color: rgba(167, 0, 0, 0.623);">&times;</span>
                         <img id="lightbox-image" src="" alt="">
-                            <a id="lightbox-download" class="lightbox-download" href="#" download style="display:none;">Download</a>
                         <div class="lightbox-info">
                             <h3 id="lightbox-title"></h3>
                             <p id="lightbox-category"></p>
@@ -1643,7 +1452,7 @@
                             ${item.image ? `<img src="${item.image}" loading="lazy">` : ""}                        <div class="gallery-overlay">
                             <div class="gallery-info">
                                 <h3>${item.head}</h3>
-                                <p>${item.content} <br> <b>${item.date}</b></p>
+                                <p>${item.content}</p>
                             </div>
                         </div>    
                     </div>
@@ -1664,6 +1473,75 @@
             </div>
 
             <div class="container">
+                                <!-- Upcoming Events -->
+                <div class="events-section">
+                    <h2>Upcoming Events</h2>
+                    <div class="events-list">
+                                              <div id="upnews-section"></div>
+
+  <!-- Firebase Libraries -->
+  <script type="module">
+    // Import Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    // Your Firebase configuration
+    const upnewsSection = document.getElementById("upnews-section");
+    const upnewsRef = ref(db, "upcomingnews");
+
+    // Fetch and display news automatically (also update badge count)
+    onValue(upnewsRef, (snapshot) => {
+      const data = snapshot.val();
+      // update nav badge with number of upcoming events
+      const count = data ? Object.keys(data).length : 0;
+      const badges = document.querySelectorAll('.news-badge');
+      badges.forEach(badge => {
+        badge.textContent = count;
+        badge.style.display = count > 0 ? 'inline-block' : 'none';
+      });
+      
+
+      upnewsSection.innerHTML = "";
+      for (const id in data) {
+        const item = data[id];
+        let displayDate = item.date || "";
+
+        try {
+          const dateObj = new Date(item.date);
+          if (!isNaN(dateObj)) {
+            displayDate = dateObj.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            });
+          }
+        } catch (error) {
+          console.warn('Error formatting upcoming event date:', error, item.date);
+        }
+
+        upnewsSection.innerHTML += `
+                        <article class="card card-hover upcoming">
+                            <div class="news-content">
+                                <div class="news-meta">
+                                    <span class="news-date">${displayDate}</span>
+                                    <span class="news-category">${item.category || 'Upcoming'}</span>
+                                </div>
+                                <h3>${item.title}</h3>
+                                <p>${item.content}<br> <br><b>Posted by Tr. Jean Pierre</b></p>
+                                <div class="event-time">Upcoming</div>
+                            </div>
+                        </article> <br>
+        `;
+      }
+    });
+  </script>
+
+                    </div>
+                </div>
+
                 
                 <!-- Latest News -->
                 <div class="news-section">
@@ -1745,7 +1623,7 @@
                                     <span class="news-category">${item.category}</span>
                                 </div>
                                 <h3>${item.title}</h3>
-                                <p>${item.content}</p>
+                                <p>${item.content}<br> <br><b>Posted by Tr. Jean Pierre</b></p>
                             </div>
                         </article> <br>
           `;
@@ -1756,58 +1634,6 @@
                     </div>
                 </div>
 
-                <!-- Upcoming Events -->
-                <div class="events-section">
-                    <h2>Upcoming Events</h2>
-                    <div class="events-list">
-                                              <div id="upnews-section"></div>
-
-  <!-- Firebase Libraries -->
-  <script type="module">
-    // Import Firebase SDKs
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    // Your Firebase configuration
-    const upnewsSection = document.getElementById("upnews-section");
-    const upnewsRef = ref(db, "upcomingnews");
-
-    // Fetch and display news automatically (also update badge count)
-    onValue(upnewsRef, (snapshot) => {
-      const data = snapshot.val();
-      // update nav badge with number of upcoming events
-      const count = data ? Object.keys(data).length : 0;
-      const badges = document.querySelectorAll('.news-badge');
-      badges.forEach(badge => {
-        badge.textContent = count;
-        badge.style.display = count > 0 ? 'inline-block' : 'none';
-      });
-
-      upnewsSection.innerHTML = "";
-      for (const id in data) {
-        const item = data[id];
-        upnewsSection.innerHTML += `
-                        <div class="event-item">
-                            <div class="event-date">
-                                <span class="event-month">${item.date}</span>
-                                <span class="event-day">${item.category}</span>
-                            </div>
-                            <div class="event-details">
-                                <h3>${item.title}</h3>
-                                <p>${item.content}</p>
-                                <div class="event-time">Upcoming</div>
-                            </div>
-                        </div> <br>
-        `;
-      }
-    });
-  </script>
-
-                    </div>
-                </div>
             </div>
         </section>
     </main>
@@ -1869,16 +1695,17 @@
                 <div class="footer-bottom-content">
                     <p>&copy; <span id="year"></span> <script>document.getElementById("year").textContent = new Date().getFullYear();</script> <b> Rwamagana Leaders' School </b>. All rights reserved.</p>
                     <div class="footer-links">
-                        <button>Privacy Policy</button>
-                        <button>Terms of Service</button>
-                        <button>Accessibility</button>
+                        <button onclick="window.open('legal.html#privacy-policy', '_blank')">Privacy Policy</button>
+                        <button onclick="window.open('legal.html#terms-of-service', '_blank')">Terms of Service</button>
+                        <button onclick="window.open('legal.html#accessibility', '_blank')">Accessibility</button>
+                        <button onclick="window.open('https://arseneportfolio.vercel.app', '_blank', 'noopener,noreferrer')">Developed by Arsene</button>                    
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <script type="module">
       import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
       import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-database.js";
@@ -1906,5 +1733,19 @@
 
       initTuitionLoader();
     </script>
+    <div id="custom-context-menu" class="context-menu">
+  <ul>
+    <li onclick="navigateTo('home')">Home</li>
+    <li onclick="navigateTo('about')">About</li>
+    <li onclick="navigateTo('academics')">Academics</li>
+    <li onclick="navigateTo('admissions')">Admissions</li>
+    <li onclick="navigateTo('gallery')">Gallery</li>
+    <li onclick="navigateTo('news')">News & Events</li>
+    <li id="menu-copy">Copy</li>
+    <li id="menu-refresh">Reload</li>
+    <li class="divider"></li>
+    <li id="menu-exit" class="danger">Exit Page</li>
+  </ul>
+</div>
 </body>
 </html>

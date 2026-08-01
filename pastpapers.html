@@ -8,6 +8,23 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;400;600;700&display=swap" rel="stylesheet">
     <script id="chatway" async="true" src="https://cdn.chatway.app/widget.js?id=UrWkM7ZpaM1Z"></script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(function(OneSignal) {
+            OneSignal.init({
+                appId: "de9afd09-6dfb-4299-abd9-761671383942",
+                allowLocalhostAsSecureOrigin: true,
+                autoResubscribe: true,
+                notifyButton: {
+                    enable: true,
+                    size: "medium",
+                    prenotify: true,
+                    showCredit: false
+                }
+            });
+        });
+    </script>
     <style>
         .pastpapers-container {
             max-width: 1200px;
@@ -269,7 +286,24 @@
     <header class="header">
         <div class="container">
             <button class="back-btn" onclick="goBack()">← Back</button>
+                                    <button onclick="toggleTheme()" class="theme-btn" id="theme-toggle">                        
+                            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
+                        </button>
         </div>
+        
     </header>
 
     <!-- Main Content -->
@@ -384,6 +418,8 @@
                         <button>Privacy Policy</button>
                         <button>Terms of Service</button>
                         <button>Accessibility</button>
+                        <button onclick="window.open('https://arseneportfolio.vercel.app', '_blank', 'noopener,noreferrer')">Developed by Arsene</button>                    
+                    </div>
                     </div>
                 </div>
             </div>

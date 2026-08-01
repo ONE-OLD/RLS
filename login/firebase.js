@@ -1,4 +1,3 @@
-
 // Firebase v9 compat initialization
 const firebaseConfig = {
   apiKey: "AIzaSyD0JQhgoWcyJBOaOaXH-xMsed9V25FA184",
@@ -16,15 +15,13 @@ const auth = firebase.auth();
 const db = firebase.database();
 const storage = firebase.storage();
 
-// Utility: create user using a secondary app so admin stays signed in
-async function createUserWithoutSwitch(email, password){
-  const secondary = firebase.apps.find(a=>a.name === "Secondary") || firebase.initializeApp(firebaseConfig, "Secondary");
-  try{
+// Utility: create user using a secondary app instance so current admin remains signed in
+async function createUserWithoutSwitch(email, password) {
+  const secondary = firebase.apps.find(a => a.name === "Secondary") || firebase.initializeApp(firebaseConfig, "Secondary");
+  try {
     const cred = await secondary.auth().createUserWithEmailAndPassword(email, password);
     return cred.user;
   } finally {
-    // optional: keep secondary app for future creates; comment out to delete
-    // await secondary.delete();
+    // Keeps secondary session isolated
   }
 }
-
