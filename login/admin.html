@@ -166,6 +166,7 @@ img.thumb{width:100%;height:110px;object-fit:cover;border-radius:10px;border:1px
           </div>
           <div class="field"><div class="label">Image (Optional)</div><input id="nimage" type="file" accept="image/*"></div>
           <div class="field"><div class="label">Content</div><textarea id="ncontent" placeholder="News details..."></textarea></div>
+          <div class="field"><div class="label">OneSignal REST API Key</div><input id="onesignalRestApiKey" placeholder="Optional: paste your OneSignal REST API key for auto-push"></div>
           <div class="actions">
             <button class="btn" onclick="postNews()">Publish News</button>
             <button class="btn" onclick="loadNews()">Refresh News</button>
@@ -188,6 +189,7 @@ img.thumb{width:100%;height:110px;object-fit:cover;border-radius:10px;border:1px
             <div class="field"><div class="label">&nbsp;</div><div class="note">Provide future date/time</div></div>
           </div>
           <div class="field"><div class="label">Content</div><textarea id="ucontent" placeholder="Description"></textarea></div>
+          <div class="field"><div class="label">OneSignal REST API Key</div><input id="onesignalRestApiKey" placeholder="Optional: paste your OneSignal REST API key for auto-push"></div>
           <div class="actions">
             <button class="btn" onclick="postUpcoming()">Publish Upcoming</button>
             <button class="btn" onclick="loadUpcoming()">Refresh Upcoming</button>
@@ -610,6 +612,19 @@ async function postNews(){
       imageUrl = await ref.getDownloadURL();
     }
     await db.ref("news").push({ title, category, content, imageUrl, date: new Date().toISOString() });
+
+    const pushMessage = content.length > 140 ? `${content.substring(0, 137)}...` : content;
+    try {
+      await sendOneSignalPushNotification({
+        title: `News: ${title}`,
+        message: pushMessage,
+        url: "https://rls.ac.rw/#news",
+        type: "news"
+      });
+    } catch (pushError) {
+      console.warn("News push notification failed:", pushError);
+    }
+
     document.getElementById("ntitle").value=""; 
     document.getElementById("ncategory").value=""; 
     document.getElementById("ncontent").value=""; 
@@ -646,6 +661,19 @@ async function postUpcoming(){
   if(!title || !content || !date){ return show("upcomingError","Title, date, and content are required."); }
   try{
     await db.ref("upcomingnews").push({ title, category, date, content, createdAt: new Date().toISOString() });
+
+    const pushMessage = content.length > 140 ? `${content.substring(0, 137)}...` : content;
+    try {
+      await sendOneSignalPushNotification({
+        title: `Upcoming: ${title}`,
+        message: pushMessage,
+        url: "https://rls.ac.rw/#news",
+        type: "upcoming"
+      });
+    } catch (pushError) {
+      console.warn("Upcoming push notification failed:", pushError);
+    }
+
     document.getElementById("utitle").value=""; 
     document.getElementById("ucategory").value=""; 
     document.getElementById("udate").value=""; 
